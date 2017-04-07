@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title>示例</title>
+    <link rel="stylesheet" href="css/mdui.min.css?v=f8d5474f78cc30e0322af9d29242f241" />
+    <!--<link rel="stylesheet" href="http://www.mdui.org/demo/assets/css/demo.css"/>-->
+
+    <style>
+        /*.mdui-tab a.mdui-tab-active{
+    color:red;
+    opacity: 1;
+}
+.mdui-tab-indicator{
+    background-color: red;
+    height: 3px;
+}*/
+        
+        .colorride-box-margin {
+            margin: 10px 10px 10px 10px;
+        }
+    </style>
+</head>
+
+<body class="mdui-appbar-with-toolbar">
+
+    <div class="mdui-container-fluid">
+
+        <header class="mdui-appbar mdui-appbar-fixed">
+            <div class="mdui-toolbar mdui-color-blue" style="height: 50px">
+                <a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">&#xe5d2;</i></a>
+                <span class="mdui-typo-title">ColorRide</span>
+                <div class="mdui-toolbar-spacer"></div>
+                <a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">&#xe8b6;</i></a>
+                <a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">&#xe5d5;</i></a>
+                <a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">&#xe5d4;</i></a>
+            </div>
+        </header>
+
+        <div class='frameset' rows="100%">
+            <div class='frameset' cols="400,*">
+                <!--<div>-->
+                <div class="mdui-row">
+
+
+                    <div class="mdui-card colorride-box-margin">
+
+                        <!-- 卡片头部，包含头像、标题、副标题 -->
+                        <div class="mdui-card-header">
+                            <img class="mdui-card-header-avatar" src="http://i4.buimg.com/567571/2523c19c61d28eb1.png" />
+                            <div class="mdui-card-header-title">项目目录</div>
+                            <div class="mdui-card-header-subtitle">D:/dddf/dfdf/dfd/豆腐干大概/sss.d</div>
+                        </div>
+                        <div class="mdui-divider"></div>
+
+
+                        <!-- 卡片的内容 -->
+                        <div class="mdui-card-content">
+
+                            This is a tree.
+
+                        </div>
+
+                        <!-- 卡片的按钮 -->
+                        <div class="mdui-card-actions">
+                            <button class="mdui-btn mdui-ripple">全部展开</button>
+                            <button class="mdui-btn mdui-ripple">全部收起</button>
+                            <button class="mdui-btn mdui-btn-icon mdui-float-right"><i class="mdui-icon material-icons">&#xe5cf;</i></button>
+                        </div>
+
+                    </div>
+
+
+
+
+
+                </div>
+                <!--</div>-->
+                <!--<div>-->
+                <div class="mdui-row">
+
+
+                    <div class="mdui-card colorride-box-margin">
+
+                        <!-- 卡片头部，包含头像、标题、副标题 -->
+                        <div class="mdui-card-header">
+                            <img class="mdui-card-header-avatar" src="http://i1.piimg.com/567571/3090cb99d10f235c.png" />
+                            <div class="mdui-card-header-title">工作区域</div>
+                            <div class="mdui-card-header-subtitle">work space</div>
+                            <div class="mdui-tab " mdui-tab id="tab" style="position: absolute;right: 0;top: 8px;">
+                                <a href="#tab1-content" id="tab1" class="mdui-ripple">Table Edit</a>
+                                <a href="#tab2-content" id="tab2" class="mdui-ripple">Text Edit</a>
+                                <a href="#tab3-content" id="tab3" class="mdui-ripple">Run</a>
+                            </div>
+                        </div>
+                        <div class="mdui-divider"></div>
+
+                        <!-- 卡片的内容 -->
+                        <div class="mdui-card-content">
+
+                            <div class="mdui-col-xs-12">
+
+                                <div id="tab1-content" class="mdui-p-a-2">
+
+                                    <div id="tab4-content" class="mdui-p-a-2">安安生生</div>
+                                    <div id="tab5-content" class="mdui-p-a-2">shopping content</div>
+                                    <div id="tab6-content" class="mdui-p-a-2">images content</div>
+
+                                    <div class="mdui-tab " mdui-tab id="tab">
+                                        <a href="#tab4-content" id="tab4" class="mdui-ripple">Table Edit</a>
+                                        <a href="#tab5-content" id="tab5" class="mdui-ripple">Text Edit</a>
+                                        <a href="#tab6-content" id="tab6" class="mdui-ripple">Run</a>
+                                    </div>
+
+
+                                </div>
+                                <div id="tab2-content" class="mdui-p-a-2" style="border: solid 1px red;">shopping content</div>
+                                <div id="tab3-content" class="mdui-p-a-2">
+                                    <div class='frameset' style="border: solid 1px red;" rows="50%,*">
+                                        <div>
+                                            <p> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+                                                tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+                                                At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
+                                                gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem
+                                                ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+                                                tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+                                                At vero eos et accusam et justo. </p>
+                                        </div>
+                                        <div>
+                                            <p> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+                                                tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+                                                At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
+                                                gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem
+                                                ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+                                                tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+                                                At vero eos et accusam et justo. </p>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+
+
+
+
+                </div>
+            </div>
+            <!--</div>-->
+        </div>
+    </div>
+
+
+    </div>
+
+    <script src="js/mdui.min.js?v=852260c4c4e92d7a7c8e009e78e3e1eb"></script>
+    <script src="http://qunarzz.com/jquery/prd/jquery-1.7.2.js"></script>
+    
+    <script>
+
+        $('.mdui-card-content')[0].style.height=document.documentElement.clientHeight-250+'px';
+        $('.mdui-card-content')[1].style.height=document.documentElement.clientHeight-198+'px';
+
+        $('#tab4-content')[0].style.height=document.documentElement.clientHeight-293+'px';
+        $('#tab5-content')[0].style.height=document.documentElement.clientHeight-293+'px';
+        $('#tab6-content')[0].style.height=document.documentElement.clientHeight-293+'px';
+
+
+        $('#tab2-content')[0].style.height=document.documentElement.clientHeight-230+'px';
+        $('#tab3-content>.frameset')[0].style.height=document.documentElement.clientHeight-230+'px';
+        
+
+        $(window).resize(function() {
+            $('.mdui-card-content')[0].style.height=document.documentElement.clientHeight-250+'px';
+            $('.mdui-card-content')[1].style.height=document.documentElement.clientHeight-198+'px';
+
+            $('#tab4-content')[0].style.height=document.documentElement.clientHeight-293+'px';
+            $('#tab5-content')[0].style.height=document.documentElement.clientHeight-293+'px';
+            $('#tab6-content')[0].style.height=document.documentElement.clientHeight-293+'px';
+
+            $('#tab2-content')[0].style.height=document.documentElement.clientHeight-230+'px';
+            $('#tab3-content>.frameset')[0].style.height=document.documentElement.clientHeight-230+'px';
+        });
+
+    </script>
+
+    <script type="text/javascript" src='js/star-frameset.js'></script>
+
+</body>
+
+</html>
