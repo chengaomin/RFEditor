@@ -12,20 +12,20 @@
     <link rel="stylesheet" href="css/mdui.min.css?v=f8d5474f78cc30e0322af9d29242f241" />
     <!--<link rel="stylesheet" href="http://www.mdui.org/demo/assets/css/demo.css"/>-->
 
-    <style>
-        /*.mdui-tab a.mdui-tab-active{
-    color:red;
-    opacity: 1;
-}
-.mdui-tab-indicator{
-    background-color: red;
-    height: 3px;
-}*/
-        
-        .colorride-box-margin {
-            margin: 10px 10px 10px 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="plugin/ztree/css/coloRideStyle/coloRideStyle.css" type="text/css">
+    <link rel="stylesheet" href="plugin/font-awesome/css/font-awesome.min.css">
+
+	<style type="text/css">
+.ztree li span.button.pIcon01_ico_open{margin-right:2px; background: url(../../../css/zTreeStyle/img/diy/1_open.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle}
+.ztree li span.button.pIcon01_ico_close{margin-right:2px; background: url(../../../css/zTreeStyle/img/diy/1_close.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle}
+.ztree li span.button.pIcon02_ico_open, .ztree li span.button.pIcon02_ico_close{margin-right:2px; background: url(../../../css/zTreeStyle/img/diy/2.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle}
+.ztree li span.button.icon01_ico_docu{margin-right:2px; background: url(../../../css/zTreeStyle/img/diy/3.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle}
+.ztree li span.button.icon02_ico_docu{margin-right:2px; background: url(../../../css/zTreeStyle/img/diy/4.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle}
+.ztree li span.button.icon03_ico_docu{margin-right:2px; background: url(../../../css/zTreeStyle/img/diy/5.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle}
+.ztree li span.button.icon04_ico_docu{margin-right:2px; background: url(../../../css/zTreeStyle/img/diy/6.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle}
+.ztree li span.button.icon05_ico_docu{margin-right:2px; background: url(../../../css/zTreeStyle/img/diy/7.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle}
+.ztree li span.button.icon06_ico_docu{margin-right:2px; background: url(../../../css/zTreeStyle/img/diy/8.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle}
+	</style>
 </head>
 
 <body class="mdui-appbar-with-toolbar">
@@ -49,7 +49,7 @@
                 <div class="mdui-row">
 
 
-                    <div class="mdui-card colorride-box-margin">
+                    <div class="mdui-card mdui-m-a-1">
 
                         <!-- 卡片头部，包含头像、标题、副标题 -->
                         <div class="mdui-card-header">
@@ -63,7 +63,7 @@
                         <!-- 卡片的内容 -->
                         <div class="mdui-card-content">
 
-                            This is a tree.
+                            <div id="treeDemo" class="ztree"></div>
 
                         </div>
 
@@ -86,14 +86,14 @@
                 <div class="mdui-row">
 
 
-                    <div class="mdui-card colorride-box-margin">
+                    <div class="mdui-card mdui-m-a-1">
 
                         <!-- 卡片头部，包含头像、标题、副标题 -->
                         <div class="mdui-card-header">
                             <img class="mdui-card-header-avatar" src="http://i1.piimg.com/567571/3090cb99d10f235c.png" />
                             <div class="mdui-card-header-title">工作区域</div>
                             <div class="mdui-card-header-subtitle">work space</div>
-                            <div class="mdui-tab " mdui-tab id="tab" style="position: absolute;right: 0;top: 8px;">
+                            <div class="mdui-tab mdui-float-right" mdui-tab id="tab" style="position: absolute;right: 0;top: 8px;">
                                 <a href="#tab1-content" id="tab1" class="mdui-ripple">Table Edit</a>
                                 <a href="#tab2-content" id="tab2" class="mdui-ripple">Text Edit</a>
                                 <a href="#tab3-content" id="tab3" class="mdui-ripple">Run</a>
@@ -101,14 +101,15 @@
                         </div>
                         <div class="mdui-divider"></div>
 
+
                         <!-- 卡片的内容 -->
                         <div class="mdui-card-content">
 
                             <div class="mdui-col-xs-12">
 
-                                <div id="tab1-content" class="mdui-p-a-2">
+                                <div id="tab1-content" class="mdui-p-a-2" style="border: solid 1px red;">
 
-                                    <div id="tab4-content" class="mdui-p-a-2">安安生生</div>
+                                    <div id="tab4-content" class="mdui-p-a-2" style="border: solid 1px red;">安安生生</div>
                                     <div id="tab5-content" class="mdui-p-a-2">shopping content</div>
                                     <div id="tab6-content" class="mdui-p-a-2">images content</div>
 
@@ -120,8 +121,8 @@
 
 
                                 </div>
-                                <div id="tab2-content" class="mdui-p-a-2" style="border: solid 1px red;">shopping content</div>
-                                <div id="tab3-content" class="mdui-p-a-2">
+                                <div id="tab2-content" class="mdui-p-a-0" style="border: solid 1px red;">shopping content</div>
+                                <div id="tab3-content" class="mdui-p-a-0">
                                     <div class='frameset' style="border: solid 1px red;" rows="50%,*">
                                         <div>
                                             <p> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
@@ -167,9 +168,8 @@
 
     <script src="js/mdui.min.js?v=852260c4c4e92d7a7c8e009e78e3e1eb"></script>
     <script src="http://qunarzz.com/jquery/prd/jquery-1.7.2.js"></script>
-    
-    <script>
 
+    <script>
         resize_div();
 
         function resize_div() {
@@ -181,8 +181,8 @@
             $('#tab6-content')[0].style.height = document.documentElement.clientHeight - 293 + 'px';
 
 
-            $('#tab2-content')[0].style.height = document.documentElement.clientHeight - 230 + 'px';
-            $('#tab3-content>.frameset')[0].style.height = document.documentElement.clientHeight - 230 + 'px';
+            $('#tab2-content')[0].style.height = document.documentElement.clientHeight - 200 + 'px';
+            $('#tab3-content>.frameset')[0].style.height = document.documentElement.clientHeight - 195 + 'px';
         }
 
         $(window).resize(function () {
@@ -190,7 +190,69 @@
         });
     </script>
 
-    <script type="text/javascript" src='js/star-frameset.js'></script>
+    <script type="text/javascript" src='plugin/frameset/star-frameset.js'></script>
+
+
+    <script type="text/javascript" src="plugin/ztree/js/jquery.ztree.core.js"></script>
+    <script type="text/javascript" src="plugin/ztree/js/jquery.ztree.excheck.js"></script>
+
+
+
+    <SCRIPT type="text/javascript">
+        var setting = {
+            check: {
+                enable: true,
+                nocheckInherit: true
+            },
+            data: {
+                simpleData: {
+                    enable: true
+                }
+            }
+        };
+
+        var zNodes = [
+            { id: 1, pId: 0, name: "随意勾选 1", open: true, iconSkin:"mdui-color-blue pIcon01" },
+            { id: 11, pId: 1, name: "随意勾选 1-1", open: true },
+            { id: 111, pId: 11, name: "无 checkbox 1-1-1", nocheck: true },
+            { id: 112, pId: 11, name: "随意勾选 1-1-2" },
+            { id: 12, pId: 1, name: "无 checkbox 1-2", nocheck: true, open: true },
+            { id: 121, pId: 12, name: "无 checkbox 1-2-1" },
+            { id: 122, pId: 12, name: "无 checkbox 1-2-2" },
+            { id: 2, pId: 0, name: "随意勾选 2", checked: true, open: true },
+            { id: 21, pId: 2, name: "随意勾选 2-1" },
+            { id: 22, pId: 2, name: "随意勾选 2-2", open: true },
+            { id: 221, pId: 22, name: "随意勾选 2-2-1", checked: true },
+            { id: 222, pId: 22, name: "随意勾选 2-2-2" },
+            { id: 23, pId: 2, name: "随意勾选 2-3" },
+            { id: 3, pId: 0, name: "随意勾选 2", checked: true, open: true },
+            { id: 31, pId: 3, name: "随意勾选 2-1" },
+            { id: 32, pId: 3, name: "随意勾选 2-2", open: true },
+            { id: 321, pId: 32, name: "随意勾选 2-2-1", checked: true },
+            { id: 322, pId: 32, name: "随意勾选 2-2-2" },
+            { id: 33, pId: 3, name: "随意勾选 2-3" }
+        ];
+
+        function nocheckNode(e) {
+            var zTree = $.fn.zTree.getZTreeObj("treeDemo"),
+                nocheck = e.data.nocheck,
+                nodes = zTree.getSelectedNodes();
+            if (nodes.length == 0) {
+                alert("请先选择一个节点");
+            }
+
+            for (var i = 0, l = nodes.length; i < l; i++) {
+                nodes[i].nocheck = nocheck;
+                zTree.updateNode(nodes[i]);
+            }
+        }
+
+        $(document).ready(function () {
+            $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+            $("#nocheckTrue").bind("click", { nocheck: true }, nocheckNode);
+            $("#nocheckFalse").bind("click", { nocheck: false }, nocheckNode);
+        });
+    </SCRIPT>
 
 </body>
 
