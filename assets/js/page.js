@@ -13,6 +13,8 @@ var UIPage = function () {
         $('#tab1-content')[0].style.height = document.documentElement.clientHeight - 220 + 'px';
         $('#tab2-content')[0].style.height = document.documentElement.clientHeight - 200 + 'px';
         $('#tab3-content>.frameset')[0].style.height = document.documentElement.clientHeight - 195 + 'px';
+
+        $('#treeDemo')[0].style.height = document.documentElement.clientHeight - 240 + 'px';
     }
 
     return {
