@@ -3,11 +3,11 @@ The better editor for Robotframework
 
 ----------
 
-- 整体布局 MDUI
+- 整体布局 MDUI (2017.4.8完成)
 
-- 分屏 js-frameset
+- 分屏 js-frameset(2017.4.8完成)
 
-- 树型结构 ztree
+- 树型结构 ztree(2017.4.9开始)
 
 - 表格 handsontable
 
