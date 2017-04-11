@@ -6,7 +6,7 @@ var UIPage = function () {
         $('.mdui-card-content')[0].style.height = document.documentElement.clientHeight - 250 + 'px';
         $('.mdui-card-content')[1].style.height = document.documentElement.clientHeight - 198 + 'px';
 
-        $('#tab4-content')[0].style.height = document.documentElement.clientHeight - 293 + 'px';
+        $('#tab4-content')[0].style.height = document.documentElement.clientHeight - 261 + 'px';
         $('#tab5-content')[0].style.height = document.documentElement.clientHeight - 293 + 'px';
         $('#tab6-content')[0].style.height = document.documentElement.clientHeight - 293 + 'px';
 
