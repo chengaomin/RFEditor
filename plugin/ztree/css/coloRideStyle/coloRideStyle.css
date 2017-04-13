@@ -161,7 +161,7 @@ ul.ztree.zTreeDragUL {margin:0; padding:0; position:absolute; width:auto; height
         
         .ztree li span.button.icon01_ico_docu {
             margin-right: 2px;
-            background: url(img/diy/3.png) no-repeat scroll 0 0 transparent;
+            background: url(img/diy/accept_database.png) no-repeat scroll 0 0 transparent;
             vertical-align: top;
             *vertical-align: middle
         }
@@ -197,6 +197,34 @@ ul.ztree.zTreeDragUL {margin:0; padding:0; position:absolute; width:auto; height
         .ztree li span.button.icon06_ico_docu {
             margin-right: 2px;
             background: url(img/diy/8.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle
+        }
+
+        /******************************************/
+
+        .ztree li span.button.testcase_ico_docu {
+            margin-right: 0px;
+            background: url(img/diy/database.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle
+        }
+
+        .ztree li span.button.testcase_pass_ico_docu {
+            margin-right: 0px;
+            background: url(img/diy/accept_database.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle
+        }
+        .ztree li span.button.testcase_fail_ico_docu {
+            margin-right: 0px;
+            background: url(img/diy/delete_database.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle
+        }
+        .ztree li span.button.testsuite_ico_open,.ztree li span.button.testsuite_ico_close {
+            margin-right: 0px;
+            background: url(img/diy/view_details.png) no-repeat scroll 0 0 transparent;
             vertical-align: top;
             *vertical-align: middle
         }
