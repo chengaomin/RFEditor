@@ -20,7 +20,7 @@ var UITree = function () {
         { id: 12, pId: 1, name: "无 checkbox 1-2", nocheck: true, open: true },
         { id: 121, pId: 12, name: "无 checkbox 1-2-1" },
         { id: 122, pId: 12, name: "无 checkbox 1-2-2" },
-        { id: 2, pId: 1, name: "随意勾选 2", checked: true, open: true },
+        { id: 2, pId: 0, name: "随意勾选 2", checked: true, open: true },
         { id: 21, pId: 2, name: "随意勾选 2-1" },
         { id: 22, pId: 2, name: "随意勾选 2-2", open: true },
         { id: 221, pId: 22, name: "随意勾选 2-2-1", checked: true },
