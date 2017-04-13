@@ -15,7 +15,7 @@ var UITree = function () {
     var zNodes = [
         { id: 1, pId: 0, name: "随意勾选 1", open: true },
         { id: 11, pId: 1, name: "随意勾选 1-1", open: true },
-        { id: 111, pId: 11, name: "checkbox 1-1-1", nocheck: true, iconSkin: "icon01" },
+        { id: 111, pId: 11, name: "checkbox 1-1-1", nocheck: true },
         { id: 112, pId: 11, name: "随意勾选 1-1-2" },
         { id: 12, pId: 1, name: "无 checkbox 1-2", nocheck: true, open: true },
         { id: 121, pId: 12, name: "无 checkbox 1-2-1" },
