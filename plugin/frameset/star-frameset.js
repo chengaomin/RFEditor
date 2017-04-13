@@ -334,7 +334,11 @@
         return this;
     }
 
-    $('.frameset').starFrameset();
+
+     setTimeout(function() {
+         $('.frameset').starFrameset();
+         $('#maindiv')[0].style.visibility="visible"; 
+     },100);
 
 
 })(jQuery);
