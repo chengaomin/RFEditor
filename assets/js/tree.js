@@ -1,6 +1,50 @@
+var zTree;
+
 var UITree = function () {
 
+
+    var OnRightClick = function (event, treeId, treeNode) {
+
+
+        if (!treeNode && event.target.tagName.toLowerCase() != "button" && $(event.target).parents("a").length == 0) {
+            zTree.cancelSelectedNode();
+            showRMenu("root", event.clientX, event.clientY);
+        } else if (treeNode && !treeNode.noR) {
+            zTree.selectNode(treeNode);
+            showRMenu("node", event.clientX, event.clientY);
+        }
+    }
+
+    var showRMenu = function (type, x, y) {
+
+        var options = {};
+
+        if (type == "node") {
+
+            //判断是否超出页面高度
+            if (document.documentElement.clientHeight - y > 257) {
+                options = { position: 'bottom' };
+                $('#menu').css({ "top": y - 10 + "px", "left": x + "px" });
+            } else {
+                options = { position: 'top' };
+
+                //判断菜单是否已经打开了
+                if (!$('#menu').hasClass("mdui-menu-open")) {
+                    $('#menu').css({ "top": y + "px", "left": x + "px" });
+                } else {
+                    $('#menu').css({ "top": y - 270 + "px", "left": x + "px" });
+                }
+            }
+
+            var inst = new mdui.Menu('#menu', '#menu', options);
+            inst.open();
+        }
+    }
+
+
     var setting = {
+
+
         check: {
             enable: true,
             nocheckInherit: true
@@ -9,6 +53,9 @@ var UITree = function () {
             simpleData: {
                 enable: true
             }
+        },
+        callback: {
+            onRightClick: OnRightClick
         }
     };
 
@@ -45,7 +92,10 @@ var UITree = function () {
     var showTree = function () {
 
         $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+        zTree = $.fn.zTree.getZTreeObj("treeDemo");
     }
+
+
 
     return {
         init: function () {
