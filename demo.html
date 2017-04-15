@@ -156,7 +156,7 @@
         <!--右击菜单-->
         <ul class="mdui-menu" id="menu_directory">
             <li class="mdui-menu-item">
-                <a href="javascript:;" class="mdui-ripple">New Suite</a>
+                <a href="javascript:;" class="mdui-ripple" onclick="addTestSuite()">New Suite</a>
             </li>
             <li class="mdui-menu-item">
                 <a href="javascript:;" class="mdui-ripple">New Directory</a>
@@ -172,7 +172,7 @@
 
         <ul class="mdui-menu" id="menu_suite">
             <li class="mdui-menu-item">
-                <a href="javascript:;" class="mdui-ripple">New Test Case</a>
+                <a href="javascript:;" class="mdui-ripple" onclick="addTestCase()">New Test Case</a>
             </li>
             <li class="mdui-menu-item">
                 <a href="javascript:;" class="mdui-ripple">New User Keyword</a>
@@ -198,7 +198,7 @@
             </li>
             <li class="mdui-divider"></li>
             <li class="mdui-menu-item">
-                <a href="javascript:;" class="mdui-ripple">Rename</a>
+                <a href="javascript:;" class="mdui-ripple" onclick="rename()">Rename</a>
             </li>
             <li class="mdui-menu-item">
                 <a href="javascript:;" class="mdui-ripple">Delete</a>
@@ -221,6 +221,8 @@
     <!--引入ztree之后，渲染左侧书结构-->
     <script type="text/javascript" src="plugin/ztree/js/jquery.ztree.core.js"></script>
     <script type="text/javascript" src="plugin/ztree/js/jquery.ztree.excheck.js"></script>
+    <script type="text/javascript" src="plugin/ztree/js/jquery.ztree.exedit.js"></script>
+
     <script type="text/javascript" src="assets/js/tree.js"></script>
 
 

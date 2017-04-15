@@ -1,14 +1,66 @@
 var zTree;
 var menuObject;
+
+
+
+
+function addTestCase() {
+    menuObject.close();
+    var treeNode = zTree.getSelectedNodes()[0];
+    var newNode = { name: "", iconSkin: "testcase" };
+    if (treeNode) {
+        treeNode = zTree.addNodes(treeNode, newNode);
+    }
+
+    zTree.editName(treeNode[0]);
+
+
+}
+
+function addTestSuite() {
+    menuObject.close();
+    var treeNode = zTree.getSelectedNodes()[0];
+    var newNode = { pId: treeNode.id, name: "", iconSkin: "testsuite", isParent: true };
+    if (treeNode) {
+        treeNode = zTree.addNodes(treeNode, newNode);
+
+    }
+
+    zTree.editName(treeNode[0]);
+
+
+
+}
+
+
+function rename() {
+    var treeNode = zTree.getSelectedNodes()[0];
+    zTree.editName(treeNode);
+};
+
+
+
+
+
 var UITree = function () {
+
+
+    var beforeRename = function (treeId, treeNode, newName) {
+        if (newName.length == 0) {
+            alert("节点名称不能为空.");
+            setTimeout(function () { zTree.editName(treeNode) }, 10);
+            return false;
+        }
+        return true;
+    }
 
 
     var OnRightClick = function (event, treeId, treeNode) {
 
 
+
         if (!treeNode && event.target.tagName.toLowerCase() != "button" && $(event.target).parents("a").length == 0) {
             zTree.cancelSelectedNode();
-            showRMenu("root", event.clientX, event.clientY);
         } else if (treeNode && !treeNode.noR) {
             zTree.selectNode(treeNode);
             showRMenu("node", event.clientX, event.clientY, treeNode);
@@ -29,6 +81,7 @@ var UITree = function () {
             default:
                 menu_id = '#menu_directory';
         }
+
 
         return menu_id;
     }
@@ -56,10 +109,15 @@ var UITree = function () {
                 }
             }
             try {
-                menuObject.close();
+                console.log(menuObject.menu.id, menu_id);
+                if ('#' + menuObject.menu.id != menu_id) {
+                    menuObject.close();
+                }
+
             } catch (error) {
 
             }
+
 
             menuObject = new mdui.Menu(menu_id, menu_id, options);
             menuObject.open();
@@ -67,9 +125,14 @@ var UITree = function () {
     }
 
 
+
+
     var setting = {
-
-
+        edit: {
+            enable: true,
+            showRemoveBtn: false,
+            showRenameBtn: false
+        },
         check: {
             enable: true,
             nocheckInherit: true
@@ -80,7 +143,8 @@ var UITree = function () {
             }
         },
         callback: {
-            onRightClick: OnRightClick
+            onRightClick: OnRightClick,
+            beforeRename: beforeRename
         }
     };
 
@@ -92,7 +156,7 @@ var UITree = function () {
         { id: 12, pId: 1, name: "无 checkbox 1-2", nocheck: true, open: true },
         { id: 121, pId: 12, name: "无 checkbox 1-2-1" },
         { id: 122, pId: 12, name: "无 checkbox 1-2-2" },
-        { id: 2, pId: 0, name: "随意勾选 2", checked: true, open: true },
+        { id: 2, pId: 0, name: "随意勾选 2", open: true },
         { id: 22, pId: 2, name: "随意勾选 2-2", open: true, iconSkin: "testsuite" },
         { id: 219, pId: 22, name: "随意勾选 2-2-1", iconSkin: "testcase" },
         { id: 220, pId: 22, name: "随意勾选 2-2-1", iconSkin: "testcase" },
