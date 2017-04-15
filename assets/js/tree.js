@@ -1,5 +1,5 @@
 var zTree;
-
+var menuObject;
 var UITree = function () {
 
 
@@ -11,33 +11,58 @@ var UITree = function () {
             showRMenu("root", event.clientX, event.clientY);
         } else if (treeNode && !treeNode.noR) {
             zTree.selectNode(treeNode);
-            showRMenu("node", event.clientX, event.clientY);
+            showRMenu("node", event.clientX, event.clientY, treeNode);
         }
     }
 
-    var showRMenu = function (type, x, y) {
+    var checkMenuType = function (treeNode) {
+        var menu_id = '';
+        switch (treeNode.iconSkin) {
+            case "testcase":
+            case "testcase_pass":
+            case "testcase_fail":
+                menu_id = '#menu_case';
+                break;
+            case "testsuite":
+                menu_id = '#menu_suite';
+                break;
+            default:
+                menu_id = '#menu_directory';
+        }
+
+        return menu_id;
+    }
+
+    var showRMenu = function (type, x, y, treeNode) {
 
         var options = {};
+
+        var menu_id = checkMenuType(treeNode);
 
         if (type == "node") {
 
             //判断是否超出页面高度
             if (document.documentElement.clientHeight - y > 257) {
                 options = { position: 'bottom' };
-                $('#menu').css({ "top": y - 10 + "px", "left": x + "px" });
+                $(menu_id).css({ "top": y - 10 + "px", "left": x + "px" });
             } else {
                 options = { position: 'top' };
 
                 //判断菜单是否已经打开了
-                if (!$('#menu').hasClass("mdui-menu-open")) {
-                    $('#menu').css({ "top": y + "px", "left": x + "px" });
+                if (!$(menu_id).hasClass("mdui-menu-open")) {
+                    $(menu_id).css({ "top": y + "px", "left": x + "px" });
                 } else {
-                    $('#menu').css({ "top": y - 270 + "px", "left": x + "px" });
+                    $(menu_id).css({ "top": y - 270 + "px", "left": x + "px" });
                 }
             }
+            try {
+                menuObject.close();
+            } catch (error) {
 
-            var inst = new mdui.Menu('#menu', '#menu', options);
-            inst.open();
+            }
+
+            menuObject = new mdui.Menu(menu_id, menu_id, options);
+            menuObject.open();
         }
     }
 
