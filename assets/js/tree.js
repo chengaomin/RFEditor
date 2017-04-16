@@ -59,6 +59,13 @@ function moveDown() {
 }
 
 
+function remove() {
+    var treeNode = zTree.getSelectedNodes()[0];
+    zTree.removeNode(treeNode, true);
+};
+
+
+
 
 var UITree = function () {
 
@@ -158,6 +165,9 @@ var UITree = function () {
         data: {
             simpleData: {
                 enable: true
+            }, keep: {
+                parent: true,
+                leaf: true
             }
         },
         callback: {
@@ -174,7 +184,7 @@ var UITree = function () {
         { id: 12, pId: 1, name: "无 checkbox 1-2", nocheck: true, open: true },
         { id: 121, pId: 12, name: "无 checkbox 1-2-1" },
         { id: 122, pId: 12, name: "无 checkbox 1-2-2" },
-        { id: 2, pId: 0, name: "随意勾选 2", open: true },
+        { id: 2, pId: 0, name: "随意勾选 22222222222", open: true, isParent: true },
         { id: 22, pId: 2, name: "随意勾选 2-2", open: true, iconSkin: "testsuite" },
         { id: 219, pId: 22, name: "随意勾选 2-2-1", iconSkin: "testcase" },
         { id: 220, pId: 22, name: "随意勾选 2-2-1", iconSkin: "testcase" },

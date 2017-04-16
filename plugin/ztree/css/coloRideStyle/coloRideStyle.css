@@ -222,7 +222,7 @@ ul.ztree.zTreeDragUL {margin:0; padding:0; position:absolute; width:auto; height
             vertical-align: top;
             *vertical-align: middle
         }
-        .ztree li span.button.testsuite_ico_open,.ztree li span.button.testsuite_ico_close {
+        .ztree li span.button.testsuite_ico_open,.ztree li span.button.testsuite_ico_close,.ztree li span.button.testsuite_ico_docu {
             margin-right: 0px;
             background: url(img/diy/view_details.png) no-repeat scroll 0 0 transparent;
             vertical-align: top;
