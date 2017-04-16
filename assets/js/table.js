@@ -1,3 +1,7 @@
+var tableDiv = document.getElementById('example'),
+    settings,
+    hot;
+
 var UITable = function () {
 
 
@@ -15,9 +19,7 @@ var UITable = function () {
             ];
         }
 
-        var tableDiv = document.getElementById('example'),
-            settings,
-            hot;
+
 
         settings = {
             data: getData(),
@@ -28,9 +30,28 @@ var UITable = function () {
             rowHeaders: true,
             minSpareRows: 1,
             minSpareCols: 1,
-            contextMenu: true,
-            rowHeights:30,
-            colWidths:200
+            contextMenu: {
+                callback: function (key, options) {
+                    if (key === 'about') {
+                        setTimeout(function () {
+                            alert("This is a context menu with default and custom options mixed");
+                        }, 100);
+                    }
+                },
+                items: {
+                    "cell_above": { name: "向前插入一格" },
+                    "cell_below": { name: "向后插入一格" },
+                    "remove_cell": { name: "删除此格" },
+                    "hsep1": "---------",
+                    "row_above": { name: "向前插入一行" },
+                    "row_below": { name: "向后插入一行" },
+                    "remove_row": { name: "删除此行" },
+                    "hsep2": "---------",
+                    "about": { name: 'About this menu' }
+                }
+            },
+            rowHeights: 30,
+            colWidths: 200
         };
         hot = new Handsontable(tableDiv, settings);
     }
