@@ -65,6 +65,14 @@ function remove() {
 };
 
 
+function copyNode() {
+    var treeNode = zTree.getSelectedNodes()[0];
+    var copy = zTree.copyNode(treeNode, treeNode, "next");
+    zTree.selectNode(copy);
+    rename();
+}
+
+
 
 
 var UITree = function () {
