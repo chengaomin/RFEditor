@@ -40,6 +40,24 @@ function rename() {
 
 
 
+function moveUp() {
+    var treeNode = zTree.getSelectedNodes()[0];
+    // 如果前面还有节点，才可以往上移动。否则不动
+    if (zTree.getSelectedNodes()[0].getPreNode()) {
+        zTree.moveNode(treeNode.getPreNode(), treeNode, "prev");
+    }
+
+}
+
+function moveDown() {
+    var treeNode = zTree.getSelectedNodes()[0];
+    // 如果后面还有节点，才可以往下移动。否则不动
+    if (zTree.getSelectedNodes()[0].getNextNode()) {
+        zTree.moveNode(treeNode.getNextNode(), treeNode, "next");
+    }
+
+}
+
 
 
 var UITree = function () {
