@@ -36,6 +36,15 @@ var UITable = function () {
                         setTimeout(function () {
                             alert("This is a context menu with default and custom options mixed");
                         }, 100);
+                    } else if (key === 'font-color') {
+                        var selected_range = hot.getSelected();
+                        var cell = hot.getCell(selected_range[0], selected_range[1]);
+                        cell.style.color = 'red';
+
+                    } else if (key === 'bg-color') {
+                        var selected_range = hot.getSelected();
+                        var cell = hot.getCell(selected_range[0], selected_range[1]);
+                        cell.style.backgroundColor = 'gray';
                     }
                 },
                 items: {
@@ -47,7 +56,9 @@ var UITable = function () {
                     "row_below": { name: "向后插入一行" },
                     "remove_row": { name: "删除此行" },
                     "hsep2": "---------",
-                    "about": { name: 'About this menu' }
+                    "about": { name: 'About this menu' },
+                    "font-color": { name: '改变字体颜色' },
+                    "bg-color": { name: '改变背景颜色' },
                 }
             },
             rowHeights: 30,
