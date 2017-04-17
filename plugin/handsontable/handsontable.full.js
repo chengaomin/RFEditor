@@ -7588,6 +7588,16 @@ function EditorManager(instance, priv, selection) {
     } else {
       activeEditor = void 0;
     }
+
+    if (activeEditor) {
+        instance._registerTimeout(setTimeout(function() {
+             activeEditor.textareaParentStyle.top = '-9999px';
+             activeEditor.textareaParentStyle.left = '-9999px';
+             activeEditor.textareaParentStyle.display = 'block';
+             activeEditor.TEXTAREA.focus();
+           }, 0));
+    }        
+        
   };
   this.isEditorOpened = function() {
     return activeEditor && activeEditor.isOpened();
