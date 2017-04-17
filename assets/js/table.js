@@ -65,6 +65,14 @@ var UITable = function () {
             colWidths: 200
         };
         hot = new Handsontable(tableDiv, settings);
+
+        // hot.updateSettings({
+        //     afterDocumentKeyDown: function (e) {
+        //         if (e.key === 'Control') {
+        //             console.log('Control');
+        //         }
+        //     }
+        // });
     }
 
     return {
