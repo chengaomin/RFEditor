@@ -7,7 +7,7 @@ var UIPage = function () {
         $('.mdui-card-content')[1].style.height = document.documentElement.clientHeight - 198 + 'px';
 
         $('#tab4-content')[0].style.height = document.documentElement.clientHeight - 261 + 'px';
-        $('#tab5-content')[0].style.height = document.documentElement.clientHeight - 293 + 'px';
+        $('#tab5-content')[0].style.height = document.documentElement.clientHeight - 261 + 'px';
         $('#tab6-content')[0].style.height = document.documentElement.clientHeight - 293 + 'px';
 
         $('#tab1-content')[0].style.height = document.documentElement.clientHeight - 220 + 'px';
@@ -22,6 +22,9 @@ var UIPage = function () {
             resizePage();
             $(window).resize(function () {
                 resizePage();
+                setTimeout("hot.render()",100);
+                setTimeout("suite_settings_table_hot.render()",100);
+                
             });
         }
 
