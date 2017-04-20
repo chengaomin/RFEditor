@@ -98,13 +98,20 @@
 
                                 <div id="tab1-content" class="mdui-p-a-2" style="border: solid 0px red;">
 
-                                    <div id="tab4-content" class="mdui-p-a-0" style="overflow: auto;">
+                                    <div id="tab4-content" class="mdui-p-a-0" style="overflow: hidden;">
+
                                         <div id="example"></div>
                                     </div>
-                                    <div id="tab5-content" class="mdui-p-a-0" style="overflow: auto;">
+                                    <div id="tab5-content" class="mdui-p-a-0" style="overflow: hidden;">
                                         <div id="suite_settings_table"></div>
                                     </div>
-                                    <div id="tab6-content" class="mdui-p-a-2">shopping content</div>
+                                    <div id="tab6-content" class="mdui-p-a-0 mdui-drawer-scrollbar" style="overflow: auto;">
+                                        <div id="suite_library_table" style="height:208px;overflow: auto;"></div>
+                                        <br>
+                                        <div id="suite_variable_table" style="height:208px;overflow: auto;"></div>
+                                        <br>
+                                        <div id="suite_metadata_table" style="height:208px;overflow: auto;"></div>
+                                    </div>
 
                                     <div class="mdui-tab " mdui-tab id="tab">
                                         <a href="#tab4-content" id="tab4" class="mdui-ripple">Table Edit</a>
@@ -209,7 +216,7 @@
 
 
 
-        <div class="mdui-table-fluid">
+        <!--<div class="mdui-table-fluid">
             <table class="mdui-table mdui-table-hoverable">
                 <thead>
                     <tr>
@@ -240,10 +247,10 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
+        </div>-->
 
 
-        <ul class="mdui-list mdui-list-dense" id="autolist">
+        <!--<ul class="mdui-list mdui-list-dense" id="autolist">
             <li class="mdui-list-item mdui-ripple mdui-list-item-active" tabindex="-1" onkeydown="alert('hhh');">
                 <i class="mdui-list-item-icon mdui-icon material-icons">&#xe168;</i>
                 <div class="mdui-list-item-content">Inbox</div>
@@ -260,7 +267,7 @@
                 <i class="mdui-list-item-icon mdui-icon material-icons">&#xe000;</i>
                 <div class="mdui-list-item-content">Spam</div>
             </li>
-        </ul>
+        </ul>-->
 
 
     </div>
@@ -291,6 +298,11 @@
     <script type="text/javascript" src="plugin/handsontable/handsontable.full.js"></script>
     <script type="text/javascript" src="assets/js/table.js"></script>
     <script type="text/javascript" src="assets/js/suite_settings_table.js"></script>
+    <script type="text/javascript" src="assets/js/suite_library_table.js"></script>
+    <script type="text/javascript" src="assets/js/suite_variable_table.js"></script>
+    <script type="text/javascript" src="assets/js/suite_metadata_table.js"></script>
+    
+    
 
 
     <!--引入快捷键-->

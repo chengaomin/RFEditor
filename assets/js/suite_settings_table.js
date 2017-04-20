@@ -40,9 +40,9 @@ var UIsuite_settings_table = function () {
         suite_settings_table_settings = {
             data: getData(),
             minRows: 9,
-            minCols: 20,
+            minCols: 5,
             rowHeights: 50,
-            colWidths: 150,
+            colWidths: 200,
             minSpareCols: 1,
             // rowHeaders: ['Car', 'Year', 'Chassis color', 'Bumper color']
         };

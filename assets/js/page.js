@@ -8,13 +8,15 @@ var UIPage = function () {
 
         $('#tab4-content')[0].style.height = document.documentElement.clientHeight - 261 + 'px';
         $('#tab5-content')[0].style.height = document.documentElement.clientHeight - 261 + 'px';
-        $('#tab6-content')[0].style.height = document.documentElement.clientHeight - 293 + 'px';
+        $('#tab6-content')[0].style.height = document.documentElement.clientHeight - 261 + 'px';
 
         $('#tab1-content')[0].style.height = document.documentElement.clientHeight - 220 + 'px';
         $('#tab2-content')[0].style.height = document.documentElement.clientHeight - 200 + 'px';
         $('#tab3-content>.frameset')[0].style.height = document.documentElement.clientHeight - 195 + 'px';
 
         $('#treeDemo')[0].style.height = document.documentElement.clientHeight - 240 + 'px';
+
+        
     }
 
     return {
@@ -24,6 +26,9 @@ var UIPage = function () {
                 resizePage();
                 setTimeout("hot.render()",100);
                 setTimeout("suite_settings_table_hot.render()",100);
+                setTimeout("suite_library_table_hot.render()",100);
+                setTimeout("suite_variable_table_hot.render()",100);
+                setTimeout("suite_metadata_table_hot.render()",100);
                 
             });
         }
