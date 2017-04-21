@@ -30968,7 +30968,7 @@ return hooks;
 
     numbro.loadCulturesInNode = function() {
         // TODO: Rename the folder in 2.0.0
-        var cultures = _dereq_('./languages');
+        var cultures = _dereq_('languages');
 
         for(var langLocaleCode in cultures) {
             if(langLocaleCode) {

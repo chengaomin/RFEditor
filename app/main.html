@@ -14,7 +14,13 @@
     <link rel="stylesheet" href="plugin/ztree/css/coloRideStyle/coloRideStyle.css" type="text/css">
 
     <link rel="stylesheet" href="plugin/handsontable/handsontable.full.css" type="text/css">
-
+    <script>
+    // 重命名 Electron 提供的 require
+    window.nodeRequire = require;
+    delete window.require;
+    delete window.exports;
+    delete window.module;
+    </script>
 </head>
 
 <body class="mdui-appbar-with-toolbar">
