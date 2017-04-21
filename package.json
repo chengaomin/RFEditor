@@ -1,15 +1,15 @@
 {
-  "name": "electron-boilerplate",
-  "productName": "Electron Boilerplate",
-  "description": "Starter for your Electron application",
-  "version": "0.0.0",
-  "author": "Mr. Gumby <mr.gumby@example.com>",
-  "copyright": "© 2016, Gumby inc.",
-  "homepage": "http://example.com",
+  "name": "RFEditor",
+  "productName": "RFEditor",
+  "description": "The better editor for Robotframework",
+  "version": "1.0.0",
+  "author": "chengaomin <ichengaomin@qq.com>",
+  "copyright": "© 2017 chengaomin",
+  "homepage": "https://github.com/chengaomin/RFEditor",
   "license": "MIT",
   "main": "app/index.js",
   "build": {
-    "appId": "com.example.electron-boilerplate",
+    "appId": "com.chengaomin.RFEditor",
     "files": [
       "app/**/*",
       "node_modules/**/*",
