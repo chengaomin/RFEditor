@@ -216,7 +216,7 @@ var UITree = function () {
 
     var showTree = function () {
 
-        $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+        $.fn.zTree.init($("#treeDemo"), setting);
         zTree = $.fn.zTree.getZTreeObj("treeDemo");
     }
 
