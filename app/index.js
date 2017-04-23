@@ -159,6 +159,7 @@ electron.app.on('ready', () => {
   const mainWindow = createWindow('main', {
     width: 1366,
     height: 768,
+    frame :false
   });
 
   mainWindow.loadURL(url.format({

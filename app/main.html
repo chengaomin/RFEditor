@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="assets/css/mdui.min.css?v=f8d5474f78cc30e0322af9d29242f241" />
 
     <link rel="stylesheet" href="plugin/ztree/css/coloRideStyle/coloRideStyle.css" type="text/css">
+    <link rel="stylesheet" href="assets/css/rfeditor.css" type="text/css">
 
     <link rel="stylesheet" href="plugin/handsontable/handsontable.full.css" type="text/css">
     <script>
@@ -27,17 +28,17 @@
 
     <div class="mdui-container-fluid">
 
-        <header class="mdui-appbar mdui-appbar-fixed">
+        <header class="mdui-appbar mdui-appbar-fixed drag">
             <div class="mdui-toolbar mdui-color-blue" style="height: 50px">
                 <span class="mdui-typo-title">RFEditor</span>
-                <a href="javascript:;" class="mdui-btn mdui-btn-icon" onclick="openDirectory()"><i class="mdui-icon material-icons">folder_open</i></a>
-                <a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">save</i></a>
-                <a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">play_circle_outline</i></a>
-                <a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">remove_circle_outline</i></a>
+                <a href="javascript:;" class="mdui-btn mdui-btn-icon no-drag" onclick="openDirectory()"><i class="mdui-icon material-icons">folder_open</i></a>
+                <a href="javascript:;" class="mdui-btn mdui-btn-icon no-drag"><i class="mdui-icon material-icons">save</i></a>
+                <a href="javascript:;" class="mdui-btn mdui-btn-icon no-drag"><i class="mdui-icon material-icons">play_circle_outline</i></a>
+                <a href="javascript:;" class="mdui-btn mdui-btn-icon no-drag"><i class="mdui-icon material-icons">remove_circle_outline</i></a>
                 <div class="mdui-toolbar-spacer"></div>
-                <a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">&#xe8b6;</i></a>
-                <a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">&#xe5d5;</i></a>
-                <a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">&#xe5d4;</i></a>
+                <a href="javascript:;" class="mdui-btn mdui-btn-icon no-drag"><i class="mdui-icon material-icons">remove</i></a>
+                <a href="javascript:;" class="mdui-btn mdui-btn-icon no-drag"><i class="mdui-icon material-icons">crop_free</i></a>
+                <a href="javascript:;" class="mdui-btn mdui-btn-icon no-drag"><i class="mdui-icon material-icons">close</i></a>
             </div>
         </header>
 
