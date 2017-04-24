@@ -8,12 +8,20 @@ function get_workspace_data(openDir) {
 
     var openDirKeys = openDir.split('\\');
 
-    var worklist = jetpack.inspectTree(openDir);
+    var worklist = jetpack.inspectTree(openDir, { relativePath: true });
 
 
     var workTreeArr = [{ id: 1, pId: 0, name: openDirKeys[openDirKeys.length - 1], open: true, isParent: true }];
 
+    var filepath = '';
+    
+    var filepathArr =[];
+
     var idcount = 2;
+
+    
+
+
 
     function picker_tree_data(list, pid) {
 
@@ -25,6 +33,12 @@ function get_workspace_data(openDir) {
 
             } else {
                 workTreeArr.push({ id: nid, pId: pid, name: value.name, open: false, isParent: true, iconSkin: "testsuite" });
+                filepath = (openDir + '/' + value.relativePath).replace('/./', '/');
+
+                filepathArr.push([filepath,nid]);
+
+
+
             }
 
         });
@@ -33,7 +47,7 @@ function get_workspace_data(openDir) {
 
     picker_tree_data(worklist.children, '1');
 
-    return workTreeArr;
+    return [workTreeArr,filepathArr];
 
 }
 
