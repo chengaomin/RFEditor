@@ -100,6 +100,22 @@ var UITree = function () {
         }
     }
 
+
+    var zTreeOnClick = function (event, treeId, treeNode) {
+
+        if (treeNode.iconSkin == 'testcase' || treeNode.iconSkin == 'keyword') {
+            var name_id = treeNode.name + '_' + treeNode.id;
+            var parentNode = treeNode.getParentNode();
+            var parent_name_id = parentNode.name + '_' + parentNode.id;
+            console.log(parent_name_id, name_id);
+            hot.loadData(rf_data[parent_name_id][name_id]);
+        }
+
+
+
+
+    };
+
     var checkMenuType = function (treeNode) {
         var menu_id = '';
         switch (treeNode.iconSkin) {
@@ -180,7 +196,8 @@ var UITree = function () {
         },
         callback: {
             onRightClick: OnRightClick,
-            beforeRename: beforeRename
+            beforeRename: beforeRename,
+            onClick: zTreeOnClick
         }
     };
 
