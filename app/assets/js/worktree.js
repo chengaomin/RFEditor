@@ -1,6 +1,9 @@
 const jetpack = nodeRequire('fs-jetpack');
 
-
+String.prototype.endWith = function (str) {
+    var reg = new RegExp(str + "$");
+    return reg.test(this);
+}
 
 function get_workspace_data(openDir) {
 
@@ -14,13 +17,10 @@ function get_workspace_data(openDir) {
     var workTreeArr = [{ id: 1, pId: 0, name: openDirKeys[openDirKeys.length - 1], open: true, isParent: true }];
 
     var filepath = '';
-    
-    var filepathArr =[];
+
+    var filepathArr = [];
 
     var idcount = 2;
-
-    
-
 
 
     function picker_tree_data(list, pid) {
@@ -32,12 +32,17 @@ function get_workspace_data(openDir) {
                 picker_tree_data(value.children, nid);
 
             } else {
-                workTreeArr.push({ id: nid, pId: pid, name: value.name, open: false, isParent: true, iconSkin: "testsuite" });
-                filepath = (openDir + '/' + value.relativePath).replace('/./', '/');
 
-                filepathArr.push([filepath,nid]);
+                // 过滤非txt，robot，csv文件
+                if (value.name.endWith(".txt") || value.name.endWith(".robot") || value.name.endWith(".csv")) {
 
+                    var file_name = value.name
+                    workTreeArr.push({ id: nid, pId: pid, name: file_name, open: false, isParent: true, iconSkin: "testsuite" });
+                    filepath = (openDir + '/' + value.relativePath).replace('/./', '/');
 
+                    filepathArr.push([filepath, nid, file_name]);
+
+                }
 
             }
 
@@ -47,7 +52,7 @@ function get_workspace_data(openDir) {
 
     picker_tree_data(worklist.children, '1');
 
-    return [workTreeArr,filepathArr];
+    return [workTreeArr, filepathArr];
 
 }
 
