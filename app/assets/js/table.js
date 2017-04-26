@@ -61,7 +61,7 @@ var UITable = function () {
                     "bg-color": { name: '改变背景颜色' },
                 }
             },
-            rowHeights: 30,
+            rowHeights: 24,
             colWidths: 200
         };
         hot = new Handsontable(tableDiv, settings);
