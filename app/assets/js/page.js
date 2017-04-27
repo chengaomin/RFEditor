@@ -26,9 +26,7 @@ var UIPage = function () {
                 resizePage();
                 setTimeout("hot.render()",100);
                 setTimeout("suite_settings_table_hot.render()",100);
-                setTimeout("suite_library_table_hot.render()",100);
                 setTimeout("suite_variable_table_hot.render()",100);
-                setTimeout("suite_metadata_table_hot.render()",100);
                 
             });
         }
