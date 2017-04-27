@@ -21,10 +21,10 @@ var UIsuite_variable_table = function () {
 
         suite_variable_table_settings = {
             data: getData(),
-            minRows: 6,
+            minRows: 200,
             minCols: 3,
-            rowHeights: 30,
-            colWidths: 273,
+            rowHeights: 24,
+            colWidths: 200,
             minSpareRows: 1,
             colHeaders: ['Variable', 'Value', 'Comment']
         };

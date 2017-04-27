@@ -11,6 +11,10 @@ var UITable = function () {
 
         function getData() {
             return [
+                ['[Documentation]'],
+                ['[Tags]'],
+                ['[Setup]'],
+
                 ['${names}', 'Create List', 'Tom', 'Peter', 'Linda'],
                 [':FOR', '${name}', 'in', '${names}'],
                 ['', 'Log', '${name}'],

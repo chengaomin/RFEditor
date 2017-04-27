@@ -31,6 +31,10 @@ var UIsuite_settings_table = function () {
                 ['Test Timeout', '', '', '', ''],
                 ['Force Tags', '', '', '', ''],
                 ['Default Tags', '', '', '', ''],
+                ['Metadata', '', '', '', ''],
+                ['Library', '', '', '', ''],
+                ['Resource', '', '', '', ''],
+                ['Variables', '', '', '', ''],
 
             ];
         }
@@ -41,10 +45,10 @@ var UIsuite_settings_table = function () {
             data: getData(),
             minRows: 9,
             minCols: 5,
-            rowHeights: 50,
+            rowHeights: 24,
             colWidths: 200,
             minSpareCols: 1,
-            // rowHeaders: ['Car', 'Year', 'Chassis color', 'Bumper color']
+            colHeaders: ['Type', 'Action/Name/Path','Action/Arguments','Action/Comment','','','','','','']
         };
         suite_settings_table_hot = new Handsontable(suite_settings_table_tableDiv, suite_settings_table_settings);
         // setTimeout('colorFirstCol()',1000);
