@@ -5,6 +5,19 @@ const fs = nodeRequire('fs');
 
 var rf_data = {};
 
+
+// 把斜杠换成空白
+function handle_one_line_data(anArray) {
+
+    for (var k = 0, length = anArray.length; k < length; k++) {
+        if (anArray[k] == '\\') {
+            anArray[k] = ''
+        }
+    }
+    return anArray
+
+}
+
 function renderTestcaseNode(filepathlist) {
 
 
@@ -36,6 +49,8 @@ function renderTestcaseNode(filepathlist) {
                 rftype = 'settings';
             } else if (line == '*** Variables ***') {
                 rftype = 'variables';
+                case_name_id_tmp = 'variables_' + parent_node_id;
+                file_data[case_name_id_tmp] = [];
             } else {
 
 
@@ -48,7 +63,7 @@ function renderTestcaseNode(filepathlist) {
                         file_data[case_name_id_tmp] = [];
                     } else {
                         if (case_name_id_tmp) {
-                            file_data[case_name_id_tmp].push($.trim(line).split('    '));
+                            file_data[case_name_id_tmp].push(handle_one_line_data($.trim(line).split('    ')));
                         }
 
                     }
@@ -60,11 +75,33 @@ function renderTestcaseNode(filepathlist) {
                         file_data[case_name_id_tmp] = [];
                     } else {
                         if (case_name_id_tmp) {
-                            file_data[case_name_id_tmp].push($.trim(line).split('    '));
+                            file_data[case_name_id_tmp].push(handle_one_line_data($.trim(line).split('    ')));
                         }
 
                     }
+                } else if (rftype == 'variables') {
+
+                    if ($.trim(line)) {
+                        var case_id = parent_node_id + '0' + case_id_count++;
+                        var variable_line = $.trim(line).split(/\s+/);
+                        zTree.addNodes(zTree.getNodeByParam("id", parent_node_id), { id: case_id, name: variable_line[0], isParent: false, iconSkin: "keyword", nocheck: true }, true);
+                        case_name_id_tmp = 'variables_' + parent_node_id;
+                        if (case_name_id_tmp) {
+
+                            
+                            var variable_data_tmp = [variable_line[0]];
+                            variable_data_tmp = variable_data_tmp.concat(variable_line[1].split('    '));
+
+
+
+                            file_data[case_name_id_tmp].push(variable_data_tmp);
+                        }
+                    }
+
+
                 }
+
+                console.log(case_name_id_tmp, rftype, line);
 
 
 
