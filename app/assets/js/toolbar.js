@@ -84,17 +84,16 @@ function renderTestcaseNode(filepathlist) {
                     if ($.trim(line)) {
                         var case_id = parent_node_id + '0' + case_id_count++;
                         var variable_line = $.trim(line).split(/\s+/);
+                        console.log(variable_line);
                         zTree.addNodes(zTree.getNodeByParam("id", parent_node_id), { id: case_id, name: variable_line[0], isParent: false, iconSkin: "variable", nocheck: true }, true);
                         case_name_id_tmp = 'variables_' + parent_node_id;
                         if (case_name_id_tmp) {
 
                             
-                            var variable_data_tmp = [variable_line[0]];
-                            variable_data_tmp = variable_data_tmp.concat(variable_line[1].split('    '));
+                            // var variable_data_tmp = [variable_line[0]];
+                            // variable_data_tmp = variable_data_tmp.concat(variable_line[1].split('    '));
 
-
-
-                            file_data[case_name_id_tmp].push(variable_data_tmp);
+                            file_data[case_name_id_tmp].push(variable_line);
                         }
                     }
 
