@@ -110,7 +110,7 @@ var UITree = function () {
             var parent_name_id = parentNode.name + '_' + parentNode.id;
             console.log(parent_name_id, name_id);
             hot.loadData(rf_data[parent_name_id][name_id]);
-            inst.show('tab4');
+            inst.show('bottom-tab-table-edit');
         } else if (treeNode.iconSkin == 'variable') {
 
             var parentNode = treeNode.getParentNode();
@@ -118,7 +118,7 @@ var UITree = function () {
             var name_id = 'variables_' + parentNode.id;
             console.log(parent_name_id, name_id);
             suite_variable_table_hot.loadData(rf_data[parent_name_id][name_id]);
-            inst.show('tab6');
+            inst.show('bottom-tab-variables');
         }
 
 
