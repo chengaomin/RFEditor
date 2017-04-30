@@ -109,7 +109,7 @@ var UITree = function () {
             var parentNode = treeNode.getParentNode();
             var parent_name_id = parentNode.name + '_' + parentNode.id;
             console.log(parent_name_id, name_id);
-            hot.loadData(rf_data[parent_name_id][name_id]);
+            edit_table_hot.loadData(rf_data[parent_name_id][name_id]);
             inst.show('bottom-tab-table-edit');
         } else if (treeNode.iconSkin == 'variable') {
 
@@ -117,7 +117,7 @@ var UITree = function () {
             var parent_name_id = parentNode.name + '_' + parentNode.id;
             var name_id = 'variables_' + parentNode.id;
             console.log(parent_name_id, name_id);
-            suite_variable_table_hot.loadData(rf_data[parent_name_id][name_id]);
+            variable_table_hot.loadData(rf_data[parent_name_id][name_id]);
             inst.show('bottom-tab-variables');
         }
 

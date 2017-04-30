@@ -1,8 +1,8 @@
-var tableDiv = document.getElementById('example'),
-    settings,
-    hot;
+var edit_table_tableDiv = document.getElementById('example'),
+    edit_table_settings,
+    edit_table_hot;
 
-var UITable = function () {
+var UIedit_table = function () {
 
 
     var renderTable = function () {
@@ -25,7 +25,7 @@ var UITable = function () {
 
 
 
-        settings = {
+        edit_table_settings = {
             data: getData(),
             startRows: 5,
             startCols: 5,
@@ -41,13 +41,13 @@ var UITable = function () {
                             alert("This is a context menu with default and custom options mixed");
                         }, 100);
                     } else if (key === 'font-color') {
-                        var selected_range = hot.getSelected();
-                        var cell = hot.getCell(selected_range[0], selected_range[1]);
+                        var selected_range = edit_table_hot.getSelected();
+                        var cell = edit_table_hot.getCell(selected_range[0], selected_range[1]);
                         cell.style.color = 'red';
 
                     } else if (key === 'bg-color') {
-                        var selected_range = hot.getSelected();
-                        var cell = hot.getCell(selected_range[0], selected_range[1]);
+                        var selected_range = edit_table_hot.getSelected();
+                        var cell = edit_table_hot.getCell(selected_range[0], selected_range[1]);
                         cell.style.backgroundColor = 'gray';
                     }
                 },
@@ -68,9 +68,9 @@ var UITable = function () {
             rowHeights: 24,
             colWidths: 200
         };
-        hot = new Handsontable(tableDiv, settings);
+        edit_table_hot = new Handsontable(edit_table_tableDiv, edit_table_settings);
 
-        // hot.updateSettings({
+        // edit_table_hot.updateSettings({
         //     afterDocumentKeyDown: function (e) {
         //         if (e.key === 'Control') {
         //             console.log('Control');
@@ -90,5 +90,5 @@ var UITable = function () {
 
 
 jQuery(document).ready(function () {
-    UITable.init();
+    UIedit_table.init();
 });

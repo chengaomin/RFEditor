@@ -1,10 +1,10 @@
-var suite_variable_table_tableDiv = document.getElementById('suite_variable_table'),
-    suite_variable_table_settings,
-    suite_variable_table_hot;
+var variable_table_tableDiv = document.getElementById('variable_table'),
+    variable_table_settings,
+    variable_table_hot;
 
 
 
-var UIsuite_variable_table = function () {
+var UIvariable_table = function () {
 
     var renderTable = function () {
 
@@ -19,7 +19,7 @@ var UIsuite_variable_table = function () {
 
 
 
-        suite_variable_table_settings = {
+        variable_table_settings = {
             data: getData(),
             minRows: 200,
             minCols: 3,
@@ -28,7 +28,7 @@ var UIsuite_variable_table = function () {
             minSpareRows: 1,
             colHeaders: ['Variable', 'Value', 'Comment']
         };
-        suite_variable_table_hot = new Handsontable(suite_variable_table_tableDiv, suite_variable_table_settings);
+        variable_table_hot = new Handsontable(variable_table_tableDiv, variable_table_settings);
 
     }
 
@@ -43,5 +43,5 @@ var UIsuite_variable_table = function () {
 
 
 jQuery(document).ready(function () {
-    UIsuite_variable_table.init();
+    UIvariable_table.init();
 });

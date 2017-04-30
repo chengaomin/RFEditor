@@ -13,8 +13,8 @@ var UIShortcuts = function () {
     var shortcuts = function () {
 
         key('ctrl+i', function () {
-            var selected_range = hot.getSelected();
-            hot.alter('insert_row', selected_range[0]);
+            var selected_range = edit_table_hot.getSelected();
+            edit_table_hot.alter('insert_row', selected_range[0]);
 
         });
     }
