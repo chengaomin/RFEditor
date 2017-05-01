@@ -31,6 +31,7 @@ function renderTestcaseNode(filepathlist) {
 
         var case_name_id_tmp = "";
         var case_id_count = 1;
+        var pre_line='';
 
 
         rl = readline.createInterface({
@@ -48,7 +49,17 @@ function renderTestcaseNode(filepathlist) {
             } else if (line == '*** Settings ***') {
                 rftype = 'settings';
                 case_name_id_tmp = 'settings_' + parent_node_id;
-                file_data[case_name_id_tmp] = [];
+                file_data[case_name_id_tmp] = [
+                    ['Documentation', '', '', '', ''],
+                    ['Suite Setup', '', '', '', ''],
+                    ['Suite Teardown', '', '', '', ''],
+                    ['Test Setup', '', '', '', ''],
+                    ['Test Teardown', '', '', '', ''],
+                    ['Test Template', '', '', '', ''],
+                    ['Test Timeout', '', '', '', ''],
+                    ['Force Tags', '', '', '', ''],
+                    ['Default Tags', '', '', '', '']
+                ];
             } else if (line == '*** Variables ***') {
                 rftype = 'variables';
                 case_name_id_tmp = 'variables_' + parent_node_id;
@@ -85,12 +96,12 @@ function renderTestcaseNode(filepathlist) {
 
                     if ($.trim(line)) {
 
-                        var variable_line=$.trim(line).split('}');
+                        var variable_line = $.trim(line).split('}');
 
-                        var variable_name=variable_line.shift()+'}';
-                        var variable_other=variable_line.join("}");
-                        var variable_data=$.trim(variable_other).split('    ');
-                        variable_data.splice(0,0,variable_name);
+                        var variable_name = variable_line.shift() + '}';
+                        var variable_other = variable_line.join("}");
+                        var variable_data = $.trim(variable_other).split('    ');
+                        variable_data.splice(0, 0, variable_name);
 
                         var case_id = parent_node_id + '0' + case_id_count++;
                         zTree.addNodes(zTree.getNodeByParam("id", parent_node_id), { id: case_id, name: variable_name, isParent: false, iconSkin: "variable", nocheck: true }, true);
@@ -107,13 +118,67 @@ function renderTestcaseNode(filepathlist) {
                         console.log(rftype, line);
                         var settings_type = $.trim($.trim(line).substring(0, 17));
                         var settings_args = $.trim($.trim(line).substring(18)).split('    ');
-                        settings_args.splice(0,0,settings_type);
+                        settings_args.splice(0, 0, settings_type);
+
 
                         case_name_id_tmp = 'settings_' + parent_node_id;
+
+                        console.log(settings_type,settings_args);
+
                         if (case_name_id_tmp) {
-                            file_data[case_name_id_tmp].push(settings_args);
+
+                            switch (settings_type) {
+                                case 'Documentation':
+                                    file_data[case_name_id_tmp][0] = settings_args;
+                                    pre_line=0;
+                                    break;
+                                case 'Suite Setup':
+                                    file_data[case_name_id_tmp][1] = settings_args;
+                                    pre_line=1;
+                                    break;
+                                case 'Suite Teardown':
+                                    file_data[case_name_id_tmp][2] = settings_args;
+                                    pre_line=2;
+                                    break;
+                                case 'Test Setup':
+                                    file_data[case_name_id_tmp][3] = settings_args;
+                                    pre_line=3;
+                                    break;
+                                case 'Test Teardown':
+                                    file_data[case_name_id_tmp][4] = settings_args;
+                                    pre_line=4;
+                                    break;
+                                case 'Test Template':
+                                    file_data[case_name_id_tmp][5] = settings_args;
+                                    pre_line=5;
+                                    break;
+                                case 'Test Timeout':
+                                    file_data[case_name_id_tmp][6] = settings_args;
+                                    pre_line=6;
+                                    break;
+                                case 'Force Tags':
+                                    file_data[case_name_id_tmp][7] = settings_args;
+                                    pre_line=7;
+                                    break;
+                                case 'Default Tags':
+                                    file_data[case_name_id_tmp][8] = settings_args;
+                                    pre_line=8;
+                                    break;
+                                case '...':
+                                    console.log(pre_line,settings_args);
+                                    settings_args.shift();
+                                    file_data[case_name_id_tmp][pre_line].push.apply(file_data[case_name_id_tmp][pre_line],settings_args);
+                                    break;
+                            }
+
+
+                            // file_data[case_name_id_tmp].push(settings_args);
                         }
+
+                        
                     }
+
+
                 }
 
 

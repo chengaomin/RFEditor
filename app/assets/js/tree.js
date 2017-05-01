@@ -124,10 +124,45 @@ var UITree = function () {
             var my_name_id = treeNode.name + '_' + treeNode.id;
             var name_id = 'settings_' + treeNode.id;
             console.log(my_name_id, name_id);
-            
+
+            var new_settings_data = [
+                ['Documentation', '', '', '', ''],
+                ['Suite Setup', '', '', '', ''],
+                ['Suite Teardown', '', '', '', ''],
+                ['Test Setup', '', '', '', ''],
+                ['Test Teardown', '', '', '', ''],
+                ['Test Template', '', '', '', ''],
+                ['Test Timeout', '', '', '', ''],
+                ['Force Tags', '', '', '', ''],
+                ['Default Tags', '', '', '', '']
+            ];
             $.each(rf_data[my_name_id][name_id], function (key, value) {
-                console.log();
+                console.log(key, value);
+                switch (value[0]) {
+                    case 'Suite Setup':
+                        new_settings_data[1]=value;
+                        break;
+                    case 'Suite Teardown':
+                        new_settings_data[2]=value;
+                        break;
+                    case 2:
+                        x = "Today it's Tuesday";
+                        break;
+                    case 3:
+                        x = "Today it's Wednesday";
+                        break;
+                    case 4:
+                        x = "Today it's Thursday";
+                        break;
+                    case 5:
+                        x = "Today it's Friday";
+                        break;
+                    case 6:
+                        x = "Today it's Saturday";
+                        break;
+                }
             });
+            console.log(new_settings_data);
             settings_table_hot.loadData(rf_data[my_name_id][name_id]);
         }
 

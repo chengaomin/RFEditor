@@ -7,7 +7,7 @@ var settings_table_tableDiv = document.getElementById('settings_table'),
 var UIsettings_table = function () {
 
     var colorFirstCol = function () {
-        for (var i = 0; i < 9; i++) {
+        for (var i = 0; i < 1; i++) {
             var cell = settings_table_hot.getCell(i,0);
             cell.style.backgroundColor = '#e6e6e6';
             cell.style.color='black';
@@ -44,7 +44,7 @@ var UIsettings_table = function () {
         settings_table_settings = {
             data: getData(),
             minRows: 9,
-            minCols: 5,
+            minCols: 20,
             rowHeights: 24,
             colWidths: 200,
             minSpareCols: 1,
