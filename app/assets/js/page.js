@@ -24,9 +24,9 @@ var UIPage = function () {
             resizePage();
             $(window).resize(function () {
                 resizePage();
-                setTimeout("hot.render()",100);
-                setTimeout("suite_settings_table_hot.render()",100);
-                setTimeout("suite_variable_table_hot.render()",100);
+                setTimeout("edit_table_hot.render()",100);
+                setTimeout("settings_table_hot.render()",100);
+                setTimeout("variable_table_hot.render()",100);
                 
             });
         }

@@ -47,6 +47,8 @@ function renderTestcaseNode(filepathlist) {
                 rftype = 'keywords';
             } else if (line == '*** Settings ***') {
                 rftype = 'settings';
+                case_name_id_tmp = 'settings_' + parent_node_id;
+                file_data[case_name_id_tmp] = [];
             } else if (line == '*** Variables ***') {
                 rftype = 'variables';
                 case_name_id_tmp = 'variables_' + parent_node_id;
@@ -84,12 +86,11 @@ function renderTestcaseNode(filepathlist) {
                     if ($.trim(line)) {
                         var case_id = parent_node_id + '0' + case_id_count++;
                         var variable_line = $.trim(line).split(/\s+/);
-                        console.log(variable_line);
                         zTree.addNodes(zTree.getNodeByParam("id", parent_node_id), { id: case_id, name: variable_line[0], isParent: false, iconSkin: "variable", nocheck: true }, true);
                         case_name_id_tmp = 'variables_' + parent_node_id;
                         if (case_name_id_tmp) {
 
-                            
+
                             // var variable_data_tmp = [variable_line[0]];
                             // variable_data_tmp = variable_data_tmp.concat(variable_line[1].split('    '));
 
@@ -98,9 +99,23 @@ function renderTestcaseNode(filepathlist) {
                     }
 
 
+                } else if (rftype == 'settings') {
+
+                    if ($.trim(line)) {
+                        console.log(rftype, line);
+                        var settings_type = $.trim($.trim(line).substring(0, 17));
+                        var settings_args = $.trim($.trim(line).substring(18)).split('    ');
+                        settings_args.splice(0,0,settings_type);
+
+                        case_name_id_tmp = 'settings_' + parent_node_id;
+                        if (case_name_id_tmp) {
+                            file_data[case_name_id_tmp].push(settings_args);
+                        }
+                    }
                 }
 
-                // console.log(case_name_id_tmp, rftype, line);
+
+
 
 
 

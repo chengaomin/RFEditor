@@ -119,6 +119,16 @@ var UITree = function () {
             console.log(parent_name_id, name_id);
             variable_table_hot.loadData(rf_data[parent_name_id][name_id]);
             inst.show('bottom-tab-variables');
+        } else if (treeNode.iconSkin == 'testsuite') {
+
+            var my_name_id = treeNode.name + '_' + treeNode.id;
+            var name_id = 'settings_' + treeNode.id;
+            console.log(my_name_id, name_id);
+            
+            $.each(rf_data[my_name_id][name_id], function (key, value) {
+                console.log();
+            });
+            settings_table_hot.loadData(rf_data[my_name_id][name_id]);
         }
 
 
