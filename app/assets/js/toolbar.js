@@ -84,17 +84,19 @@ function renderTestcaseNode(filepathlist) {
                 } else if (rftype == 'variables') {
 
                     if ($.trim(line)) {
+
+                        var variable_line=$.trim(line).split('}');
+
+                        var variable_name=variable_line.shift()+'}';
+                        var variable_other=variable_line.join("}");
+                        var variable_data=$.trim(variable_other).split('    ');
+                        variable_data.splice(0,0,variable_name);
+
                         var case_id = parent_node_id + '0' + case_id_count++;
-                        var variable_line = $.trim(line).split(/\s+/);
-                        zTree.addNodes(zTree.getNodeByParam("id", parent_node_id), { id: case_id, name: variable_line[0], isParent: false, iconSkin: "variable", nocheck: true }, true);
+                        zTree.addNodes(zTree.getNodeByParam("id", parent_node_id), { id: case_id, name: variable_name, isParent: false, iconSkin: "variable", nocheck: true }, true);
                         case_name_id_tmp = 'variables_' + parent_node_id;
                         if (case_name_id_tmp) {
-
-
-                            // var variable_data_tmp = [variable_line[0]];
-                            // variable_data_tmp = variable_data_tmp.concat(variable_line[1].split('    '));
-
-                            file_data[case_name_id_tmp].push(variable_line);
+                            file_data[case_name_id_tmp].push(variable_data);
                         }
                     }
 
