@@ -31,7 +31,7 @@ function renderTestcaseNode(filepathlist) {
 
         var case_name_id_tmp = "";
         var case_id_count = 1;
-        var pre_line='';
+        var pre_line = '';
 
 
         rl = readline.createInterface({
@@ -123,51 +123,51 @@ function renderTestcaseNode(filepathlist) {
 
                         case_name_id_tmp = 'settings_' + parent_node_id;
 
-                        console.log(settings_type,settings_args);
+                        console.log(settings_type, settings_args);
 
                         if (case_name_id_tmp) {
 
                             switch (settings_type) {
                                 case 'Documentation':
                                     file_data[case_name_id_tmp][0] = settings_args;
-                                    pre_line=0;
+                                    pre_line = 0;
                                     break;
                                 case 'Suite Setup':
                                     file_data[case_name_id_tmp][1] = settings_args;
-                                    pre_line=1;
+                                    pre_line = 1;
                                     break;
                                 case 'Suite Teardown':
                                     file_data[case_name_id_tmp][2] = settings_args;
-                                    pre_line=2;
+                                    pre_line = 2;
                                     break;
                                 case 'Test Setup':
                                     file_data[case_name_id_tmp][3] = settings_args;
-                                    pre_line=3;
+                                    pre_line = 3;
                                     break;
                                 case 'Test Teardown':
                                     file_data[case_name_id_tmp][4] = settings_args;
-                                    pre_line=4;
+                                    pre_line = 4;
                                     break;
                                 case 'Test Template':
                                     file_data[case_name_id_tmp][5] = settings_args;
-                                    pre_line=5;
+                                    pre_line = 5;
                                     break;
                                 case 'Test Timeout':
                                     file_data[case_name_id_tmp][6] = settings_args;
-                                    pre_line=6;
+                                    pre_line = 6;
                                     break;
                                 case 'Force Tags':
                                     file_data[case_name_id_tmp][7] = settings_args;
-                                    pre_line=7;
+                                    pre_line = 7;
                                     break;
                                 case 'Default Tags':
                                     file_data[case_name_id_tmp][8] = settings_args;
-                                    pre_line=8;
+                                    pre_line = 8;
                                     break;
                                 case '...':
-                                    console.log(pre_line,settings_args);
+                                    console.log(pre_line, settings_args);
                                     settings_args.shift();
-                                    file_data[case_name_id_tmp][pre_line].push.apply(file_data[case_name_id_tmp][pre_line],settings_args);
+                                    file_data[case_name_id_tmp][pre_line].push.apply(file_data[case_name_id_tmp][pre_line], settings_args);
                                     break;
                             }
 
@@ -175,7 +175,7 @@ function renderTestcaseNode(filepathlist) {
                             // file_data[case_name_id_tmp].push(settings_args);
                         }
 
-                        
+
                     }
 
 
@@ -199,7 +199,16 @@ function renderTestcaseNode(filepathlist) {
 
             console.log(file_data, value[2]);
 
+            // __init__.txt 文件，setting种没有 Test Template、Default Tags、Test Timeout
+            if (value[2] == '__init__.txt') {
+                file_data['settings_' + parent_node_id].splice(8, 1);
+                file_data['settings_' + parent_node_id].splice(6, 1);
+                file_data['settings_' + parent_node_id].splice(5, 1);
+            }
+
             rf_data[value[2] + "_" + value[1]] = file_data;
+
+
 
 
 
