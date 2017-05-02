@@ -83,7 +83,11 @@ function renderTestcaseNode(filepathlist) {
                 } else if (rftype == 'keywords') {
                     if (line[0] != ' ' && line.indexOf('***') != 0 && line) {
                         var case_id = parent_node_id + '0' + case_id_count++;
-                        zTree.addNodes(zTree.getNodeByParam("id", parent_node_id), { id: case_id, name: line, isParent: false, iconSkin: "keyword", nocheck: true }, true);
+                        if (value[2] == '__init__.txt') {
+                            zTree.addNodes(zTree.getNodeByParam("id", parent_node_id).getParentNode(), { id: case_id, name: line, isParent: false, iconSkin: "keyword", nocheck: true }, true);
+                        } else {
+                            zTree.addNodes(zTree.getNodeByParam("id", parent_node_id), { id: case_id, name: line, isParent: false, iconSkin: "keyword", nocheck: true }, true);
+                        }
                         case_name_id_tmp = line + '_' + case_id;
                         file_data[case_name_id_tmp] = [];
                     } else {

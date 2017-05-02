@@ -107,7 +107,12 @@ var UITree = function () {
         if (treeNode.iconSkin == 'testcase' || treeNode.iconSkin == 'keyword') {
             var name_id = treeNode.name + '_' + treeNode.id;
             var parentNode = treeNode.getParentNode();
-            var parent_name_id = parentNode.name + '_' + parentNode.id;
+
+            if (parentNode.iconSkin == undefined) {
+                var parent_name_id = '__init__.txt_' + parentNode.id;
+            } else {
+                var parent_name_id = parentNode.name + '_' + parentNode.id;
+            }
             console.log(parent_name_id, name_id);
             edit_table_hot.loadData(rf_data[parent_name_id][name_id]);
             inst.show('bottom-tab-table-edit');
@@ -134,8 +139,11 @@ var UITree = function () {
         } else if (treeNode.iconSkin == undefined) {
             var my_name_id = '__init__.txt_' + treeNode.id;
             console.log(my_name_id);
-            settings_table_hot.loadData(rf_data[my_name_id]['settings']);
-            inst.show('bottom-tab-settings');
+            if (rf_data.hasOwnProperty(my_name_id) && rf_data[my_name_id].hasOwnProperty('settings')) {
+                settings_table_hot.loadData(rf_data[my_name_id]['settings']);
+                inst.show('bottom-tab-settings');
+            }
+
 
 
         }
