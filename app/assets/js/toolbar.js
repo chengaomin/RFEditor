@@ -48,7 +48,7 @@ function renderTestcaseNode(filepathlist) {
                 rftype = 'keywords';
             } else if (line == '*** Settings ***') {
                 rftype = 'settings';
-                case_name_id_tmp = 'settings_' + parent_node_id;
+                case_name_id_tmp = 'settings';
                 file_data[case_name_id_tmp] = [
                     ['Documentation', '', '', '', ''],
                     ['Suite Setup', '', '', '', ''],
@@ -62,7 +62,7 @@ function renderTestcaseNode(filepathlist) {
                 ];
             } else if (line == '*** Variables ***') {
                 rftype = 'variables';
-                case_name_id_tmp = 'variables_' + parent_node_id;
+                case_name_id_tmp = 'variables';
                 file_data[case_name_id_tmp] = [];
             } else {
 
@@ -104,8 +104,14 @@ function renderTestcaseNode(filepathlist) {
                         variable_data.splice(0, 0, variable_name);
 
                         var case_id = parent_node_id + '0' + case_id_count++;
-                        zTree.addNodes(zTree.getNodeByParam("id", parent_node_id), { id: case_id, name: variable_name, isParent: false, iconSkin: "variable", nocheck: true }, true);
-                        case_name_id_tmp = 'variables_' + parent_node_id;
+
+                        if (value[2] == '__init__.txt') {
+                            zTree.addNodes(zTree.getNodeByParam("id", parent_node_id).getParentNode(), { id: case_id, name: variable_name, isParent: false, iconSkin: "variable", nocheck: true }, true);
+                        } else {
+                            zTree.addNodes(zTree.getNodeByParam("id", parent_node_id), { id: case_id, name: variable_name, isParent: false, iconSkin: "variable", nocheck: true }, true);
+
+                        }
+                        case_name_id_tmp = 'variables';
                         if (case_name_id_tmp) {
                             file_data[case_name_id_tmp].push(variable_data);
                         }
@@ -121,7 +127,7 @@ function renderTestcaseNode(filepathlist) {
                         settings_args.splice(0, 0, settings_type);
 
 
-                        case_name_id_tmp = 'settings_' + parent_node_id;
+                        case_name_id_tmp = 'settings';
 
                         console.log(settings_type, settings_args);
 
@@ -182,11 +188,6 @@ function renderTestcaseNode(filepathlist) {
                 }
 
 
-
-
-
-
-
             }
         });
 
@@ -201,14 +202,18 @@ function renderTestcaseNode(filepathlist) {
 
             // __init__.txt 文件，setting种没有 Test Template、Default Tags、Test Timeout
             if (value[2] == '__init__.txt') {
-                file_data['settings_' + parent_node_id].splice(8, 1);
-                file_data['settings_' + parent_node_id].splice(6, 1);
-                file_data['settings_' + parent_node_id].splice(5, 1);
+                file_data['settings'].splice(8, 1);
+                file_data['settings'].splice(6, 1);
+                file_data['settings'].splice(5, 1);
+
+                var node_id = zTree.getNodeByParam("id", parent_node_id).getParentNode().id
+                rf_data[value[2] + "_" + node_id] = file_data;
+
+            } else {
+
+                rf_data[value[2] + "_" + value[1]] = file_data;
+
             }
-
-            rf_data[value[2] + "_" + value[1]] = file_data;
-
-
 
 
 

@@ -114,57 +114,32 @@ var UITree = function () {
         } else if (treeNode.iconSkin == 'variable') {
 
             var parentNode = treeNode.getParentNode();
-            var parent_name_id = parentNode.name + '_' + parentNode.id;
-            var name_id = 'variables_' + parentNode.id;
+
+            if (parentNode.iconSkin == undefined) {
+                var parent_name_id = '__init__.txt_' + parentNode.id;
+            } else {
+                var parent_name_id = parentNode.name + '_' + parentNode.id;
+            }
+            var name_id = 'variables';
             console.log(parent_name_id, name_id);
             variable_table_hot.loadData(rf_data[parent_name_id][name_id]);
             inst.show('bottom-tab-variables');
+
         } else if (treeNode.iconSkin == 'testsuite') {
 
             var my_name_id = treeNode.name + '_' + treeNode.id;
-            var name_id = 'settings_' + treeNode.id;
+            var name_id = 'settings';
             console.log(my_name_id, name_id);
-
-            var new_settings_data = [
-                ['Documentation', '', '', '', ''],
-                ['Suite Setup', '', '', '', ''],
-                ['Suite Teardown', '', '', '', ''],
-                ['Test Setup', '', '', '', ''],
-                ['Test Teardown', '', '', '', ''],
-                ['Test Template', '', '', '', ''],
-                ['Test Timeout', '', '', '', ''],
-                ['Force Tags', '', '', '', ''],
-                ['Default Tags', '', '', '', '']
-            ];
-            $.each(rf_data[my_name_id][name_id], function (key, value) {
-                console.log(key, value);
-                switch (value[0]) {
-                    case 'Suite Setup':
-                        new_settings_data[1]=value;
-                        break;
-                    case 'Suite Teardown':
-                        new_settings_data[2]=value;
-                        break;
-                    case 2:
-                        x = "Today it's Tuesday";
-                        break;
-                    case 3:
-                        x = "Today it's Wednesday";
-                        break;
-                    case 4:
-                        x = "Today it's Thursday";
-                        break;
-                    case 5:
-                        x = "Today it's Friday";
-                        break;
-                    case 6:
-                        x = "Today it's Saturday";
-                        break;
-                }
-            });
-            console.log(new_settings_data);
             settings_table_hot.loadData(rf_data[my_name_id][name_id]);
+        } else if (treeNode.iconSkin == undefined) {
+            var my_name_id = '__init__.txt_' + treeNode.id;
+            console.log(my_name_id);
+            settings_table_hot.loadData(rf_data[my_name_id]['settings']);
+            inst.show('bottom-tab-settings');
+
+
         }
+
 
 
 
