@@ -116,6 +116,7 @@ var UITree = function () {
             console.log(parent_name_id, name_id);
             edit_table_hot.loadData(rf_data[parent_name_id][name_id]);
             inst.show('bottom-tab-table-edit');
+
         } else if (treeNode.iconSkin == 'variable') {
 
             var parentNode = treeNode.getParentNode();
@@ -136,6 +137,7 @@ var UITree = function () {
             var name_id = 'settings';
             console.log(my_name_id, name_id);
             settings_table_hot.loadData(rf_data[my_name_id][name_id]);
+            inst.show('bottom-tab-settings');
 
         } else if (treeNode.iconSkin == 'resource') {
 
@@ -143,6 +145,7 @@ var UITree = function () {
             var name_id = 'settings';
             console.log(my_name_id, name_id);
             settings_table_hot.loadData(rf_data[my_name_id][name_id]);
+            inst.show('bottom-tab-settings');
 
         } else if (treeNode.iconSkin == undefined) {
             var my_name_id = '__init__.txt_' + treeNode.id;
