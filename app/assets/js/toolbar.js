@@ -179,6 +179,9 @@ function renderTestcaseNode(filepathlist) {
                                     settings_args.shift();
                                     file_data[case_name_id_tmp][pre_line].push.apply(file_data[case_name_id_tmp][pre_line], settings_args);
                                     break;
+                                default:
+                                    file_data[case_name_id_tmp].push(settings_args);
+                                    break;
                             }
 
 
