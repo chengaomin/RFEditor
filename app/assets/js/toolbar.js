@@ -216,13 +216,17 @@ function renderTestcaseNode(filepathlist) {
                 var node_id = zTree.getNodeByParam("id", parent_node_id).getParentNode().id
                 rf_data[value[2] + "_" + node_id] = file_data;
 
+                // 移除__init__.txt 文件的节点
+                zTree.removeNode(zTree.getNodeByParam("id", parent_node_id));
+
             } else {
 
                 rf_data[value[2] + "_" + value[1]] = file_data;
 
             }
 
-            if (filetype == 'resource') {
+            // 对resource文件，settings中只有一格document，其他去掉
+            if (filetype == 'resource' && value[2] != '__init__.txt') {
 
                 if (file_data.hasOwnProperty('settings')) {
                     file_data['settings'].splice(8, 1);
@@ -236,6 +240,38 @@ function renderTestcaseNode(filepathlist) {
 
                 }
 
+            }
+
+            // 对没有settings的文件，添加settings
+
+            if (filetype == 'resource' && !file_data.hasOwnProperty('settings')) {
+                file_data['settings'] = [
+                    ['Documentation', '', '', '', '']
+                ];
+
+            } else if (filetype == 'suite' && !file_data.hasOwnProperty('settings')) {
+
+                file_data['settings'] = [
+                    ['Documentation', '', '', '', ''],
+                    ['Suite Setup', '', '', '', ''],
+                    ['Suite Teardown', '', '', '', ''],
+                    ['Test Setup', '', '', '', ''],
+                    ['Test Teardown', '', '', '', ''],
+                    ['Test Template', '', '', '', ''],
+                    ['Test Timeout', '', '', '', ''],
+                    ['Force Tags', '', '', '', ''],
+                    ['Default Tags', '', '', '', '']
+                ];
+
+            } else if (value[2] == '__init__.txt' && !file_data.hasOwnProperty('settings')) {
+                file_data['settings'] = [
+                    ['Documentation', '', '', '', ''],
+                    ['Suite Setup', '', '', '', ''],
+                    ['Suite Teardown', '', '', '', ''],
+                    ['Test Setup', '', '', '', ''],
+                    ['Test Teardown', '', '', '', ''],
+                    ['Force Tags', '', '', '', '']
+                ];
             }
 
 
