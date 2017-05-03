@@ -71,5 +71,5 @@ var UIsettings_table = function () {
 jQuery(document).ready(function () {
     UIsettings_table.init();
 
-    Handsontable.hooks.add('afterRender', UIsettings_table.colorFirstCol, settings_table_hot);
+    // Handsontable.hooks.add('afterRender', UIsettings_table.colorFirstCol, settings_table_hot);
 });

@@ -136,6 +136,14 @@ var UITree = function () {
             var name_id = 'settings';
             console.log(my_name_id, name_id);
             settings_table_hot.loadData(rf_data[my_name_id][name_id]);
+
+        } else if (treeNode.iconSkin == 'resource') {
+
+            var my_name_id = treeNode.name + '_' + treeNode.id;
+            var name_id = 'settings';
+            console.log(my_name_id, name_id);
+            settings_table_hot.loadData(rf_data[my_name_id][name_id]);
+
         } else if (treeNode.iconSkin == undefined) {
             var my_name_id = '__init__.txt_' + treeNode.id;
             console.log(my_name_id);
@@ -143,8 +151,6 @@ var UITree = function () {
                 settings_table_hot.loadData(rf_data[my_name_id]['settings']);
                 inst.show('bottom-tab-settings');
             }
-
-
 
         }
 

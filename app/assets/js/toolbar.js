@@ -222,6 +222,25 @@ function renderTestcaseNode(filepathlist) {
 
             }
 
+            if (filetype == 'resource') {
+
+                if (file_data.hasOwnProperty('settings')) {
+                    file_data['settings'].splice(8, 1);
+                    file_data['settings'].splice(7, 1);
+                    file_data['settings'].splice(6, 1);
+                    file_data['settings'].splice(5, 1);
+                    file_data['settings'].splice(4, 1);
+                    file_data['settings'].splice(3, 1);
+                    file_data['settings'].splice(2, 1);
+                    file_data['settings'].splice(1, 1);
+
+                }
+
+            }
+
+
+
+
 
 
         });
