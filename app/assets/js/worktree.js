@@ -36,7 +36,8 @@ function get_workspace_data(openDir) {
                 // 过滤非txt，robot，csv文件
                 if (value.name.endWith(".txt") || value.name.endWith(".robot") || value.name.endWith(".csv")) {
 
-                    var file_name = value.name
+                    // 去文件后缀
+                    var file_name = value.name.replace(/\.\w+$/, "");
                     workTreeArr.push({ id: nid, pId: pid, name: file_name, open: false, isParent: true, iconSkin: "testsuite" });
                     filepath = (openDir + '/' + value.relativePath).replace('/./', '/');
 

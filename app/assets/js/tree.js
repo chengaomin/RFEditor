@@ -109,7 +109,7 @@ var UITree = function () {
             var parentNode = treeNode.getParentNode();
 
             if (parentNode.iconSkin == undefined) {
-                var parent_name_id = '__init__.txt_' + parentNode.id;
+                var parent_name_id = '__init__' + parentNode.id;
             } else {
                 var parent_name_id = parentNode.name + '_' + parentNode.id;
             }
@@ -122,7 +122,7 @@ var UITree = function () {
             var parentNode = treeNode.getParentNode();
 
             if (parentNode.iconSkin == undefined) {
-                var parent_name_id = '__init__.txt_' + parentNode.id;
+                var parent_name_id = '__init__' + '_' + parentNode.id;
             } else {
                 var parent_name_id = parentNode.name + '_' + parentNode.id;
             }
@@ -148,11 +148,12 @@ var UITree = function () {
             inst.show('bottom-tab-settings');
 
         } else if (treeNode.iconSkin == undefined) {
-            var my_name_id = '__init__.txt_' + treeNode.id;
+            var my_name_id = '__init__' + '_' + treeNode.id;
             console.log(my_name_id);
             if (rf_data.hasOwnProperty(my_name_id) && rf_data[my_name_id].hasOwnProperty('settings')) {
                 settings_table_hot.loadData(rf_data[my_name_id]['settings']);
                 inst.show('bottom-tab-settings');
+
             }
 
         }

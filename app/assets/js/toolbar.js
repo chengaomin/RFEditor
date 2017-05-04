@@ -83,7 +83,7 @@ function renderTestcaseNode(filepathlist) {
                 } else if (rftype == 'keywords') {
                     if (line[0] != ' ' && line.indexOf('***') != 0 && line) {
                         var case_id = parent_node_id + '0' + case_id_count++;
-                        if (value[2] == '__init__.txt') {
+                        if (value[2] == '__init__') {
                             zTree.addNodes(zTree.getNodeByParam("id", parent_node_id).getParentNode(), { id: case_id, name: line, isParent: false, iconSkin: "keyword", nocheck: true }, true);
                         } else {
                             zTree.addNodes(zTree.getNodeByParam("id", parent_node_id), { id: case_id, name: line, isParent: false, iconSkin: "keyword", nocheck: true }, true);
@@ -109,7 +109,7 @@ function renderTestcaseNode(filepathlist) {
 
                         var case_id = parent_node_id + '0' + case_id_count++;
 
-                        if (value[2] == '__init__.txt') {
+                        if (value[2] == '__init__') {
                             zTree.addNodes(zTree.getNodeByParam("id", parent_node_id).getParentNode(), { id: case_id, name: variable_name, isParent: false, iconSkin: "variable", nocheck: true }, true);
                         } else {
                             zTree.addNodes(zTree.getNodeByParam("id", parent_node_id), { id: case_id, name: variable_name, isParent: false, iconSkin: "variable", nocheck: true }, true);
@@ -207,8 +207,10 @@ function renderTestcaseNode(filepathlist) {
 
             console.log(file_data, value[2]);
 
-            // __init__.txt 文件，setting种没有 Test Template、Default Tags、Test Timeout
-            if (value[2] == '__init__.txt') {
+            // __init__ 文件，setting种没有 Test Template、Default Tags、Test Timeout
+            if (value[2] == '__init__') {
+
+                
                 file_data['settings'].splice(8, 1);
                 file_data['settings'].splice(6, 1);
                 file_data['settings'].splice(5, 1);
@@ -216,7 +218,7 @@ function renderTestcaseNode(filepathlist) {
                 var node_id = zTree.getNodeByParam("id", parent_node_id).getParentNode().id
                 rf_data[value[2] + "_" + node_id] = file_data;
 
-                // 移除__init__.txt 文件的节点
+                // 移除__init__ 文件的节点
                 zTree.removeNode(zTree.getNodeByParam("id", parent_node_id));
 
             } else {
@@ -226,7 +228,7 @@ function renderTestcaseNode(filepathlist) {
             }
 
             // 对resource文件，settings中只有一格document，其他去掉
-            if (filetype == 'resource' && value[2] != '__init__.txt') {
+            if (filetype == 'resource' && value[2] != '__init__') {
 
                 if (file_data.hasOwnProperty('settings')) {
                     file_data['settings'].splice(8, 1);
@@ -263,7 +265,7 @@ function renderTestcaseNode(filepathlist) {
                     ['Default Tags', '', '', '', '']
                 ];
 
-            } else if (value[2] == '__init__.txt' && !file_data.hasOwnProperty('settings')) {
+            } else if (value[2] == '__init__' && !file_data.hasOwnProperty('settings')) {
                 file_data['settings'] = [
                     ['Documentation', '', '', '', ''],
                     ['Suite Setup', '', '', '', ''],
