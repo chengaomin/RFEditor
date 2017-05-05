@@ -1,6 +1,18 @@
+
+const { app } = nodeRequire('electron').remote;
+
+var temp_dir=app.getPath('temp')+'/RFEditor'+(new Date()).valueOf();
+
+var argfile_path=temp_dir+'/argfile.txt';
+
+console.log(temp_dir);
+
+
 function runTest() {
 
     var checked_nodes = zTree.getCheckedNodes(true);
+
+    argfile_data = ['--outputdir', temp_dir , '-C', 'off', '-W', '168']
 
     $.each(checked_nodes, function (index, node) {
 
@@ -13,20 +25,20 @@ function runTest() {
             // console.log(suite_name, case_name);
             get_suite_case_name(node);
 
-        }
+            jetpack.write(argfile_path, argfile_data.join('\r\n'));
 
+        }
 
     });
 
 }
 
+var argfile_data = [];
 
 function get_suite_case_name(node) {
 
     var case_name = [];
     var suite_name = [];
-    
-
 
     $.each(node.getPath(), function (i, n) {
 
@@ -36,9 +48,13 @@ function get_suite_case_name(node) {
     });
 
     suite_name.pop();
-    
 
+    argfile_data.push('--suite');
+    argfile_data.push(suite_name.join("."));
+    argfile_data.push('--test');
+    argfile_data.push(case_name.join("."));
 
     console.log(case_name.join("."));
     console.log(suite_name.join("."));
 }
+
