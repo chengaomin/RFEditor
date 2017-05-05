@@ -67,8 +67,10 @@ function renderTestcaseNode(filepathlist) {
             } else {
 
 
-
                 if (rftype == 'testcase') {
+
+                    console.log(case_name_id_tmp,line);
+
                     if (line[0] != ' ' && line.indexOf('***') != 0 && line) {
                         var case_id = parent_node_id + '0' + case_id_count++;
                         zTree.addNodes(zTree.getNodeByParam("id", parent_node_id), { id: case_id, name: line, isParent: false, iconSkin: "testcase" }, true);

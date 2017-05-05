@@ -1,9 +1,11 @@
 
 const { app } = nodeRequire('electron').remote;
+var path = nodeRequire("path");
 
-var temp_dir=app.getPath('temp')+'/RFEditor'+(new Date()).valueOf();
 
-var argfile_path=temp_dir+'/argfile.txt';
+var temp_dir=path.join(app.getPath('temp'),'RFEditor'+(new Date()).valueOf());
+
+var argfile_path=path.join(temp_dir,'argfile.txt');
 
 console.log(temp_dir);
 

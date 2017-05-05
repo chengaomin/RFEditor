@@ -73,6 +73,33 @@ function copyNode() {
 }
 
 
+function showWorkspacePath(node) {
+
+    console.log(node.iconSkin);
+
+    if (node.iconSkin == 'testsuite' || node.iconSkin == 'resource' || node.iconSkin == undefined) {
+
+        var sub_path = [''];
+
+        var nodes = node.getPath();
+
+        nodes.shift();
+
+        $.each(nodes, function (i, n) {
+            sub_path.push(n.name);
+        });
+
+        $('#workspace_sub_dir').text(sub_path.join(path.sep));;
+
+    } else if (node.iconSkin == 'keyword' || node.iconSkin == 'testcase' || node.iconSkin == 'variable') {
+
+        showWorkspacePath(node.getParentNode());
+
+    }
+
+
+}
+
 
 
 var UITree = function () {
@@ -102,6 +129,9 @@ var UITree = function () {
 
 
     var zTreeOnClick = function (event, treeId, treeNode) {
+
+        showWorkspacePath(treeNode);
+
         var inst = new mdui.Tab('#bottom-tab');
 
         if (treeNode.iconSkin == 'testcase' || treeNode.iconSkin == 'keyword') {
@@ -109,7 +139,7 @@ var UITree = function () {
             var parentNode = treeNode.getParentNode();
 
             if (parentNode.iconSkin == undefined) {
-                var parent_name_id = '__init__' + parentNode.id;
+                var parent_name_id = '__init__' + '_' + parentNode.id;
             } else {
                 var parent_name_id = parentNode.name + '_' + parentNode.id;
             }
@@ -138,6 +168,8 @@ var UITree = function () {
             console.log(my_name_id, name_id);
             settings_table_hot.loadData(rf_data[my_name_id][name_id]);
             inst.show('bottom-tab-settings');
+
+
 
         } else if (treeNode.iconSkin == 'resource') {
 
