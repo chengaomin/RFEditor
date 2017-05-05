@@ -69,7 +69,6 @@ function renderTestcaseNode(filepathlist) {
 
                 if (rftype == 'testcase') {
 
-                    console.log(case_name_id_tmp,line);
 
                     if (line[0] != ' ' && line.indexOf('***') != 0 && line) {
                         var case_id = parent_node_id + '0' + case_id_count++;
@@ -127,7 +126,6 @@ function renderTestcaseNode(filepathlist) {
                 } else if (rftype == 'settings') {
 
                     if ($.trim(line)) {
-                        console.log(rftype, line);
                         var settings_type = $.trim($.trim(line).substring(0, 17));
                         var settings_args = $.trim($.trim(line).substring(18)).split('    ');
                         settings_args.splice(0, 0, settings_type);
@@ -135,7 +133,6 @@ function renderTestcaseNode(filepathlist) {
 
                         case_name_id_tmp = 'settings';
 
-                        console.log(settings_type, settings_args);
 
                         if (case_name_id_tmp) {
 
@@ -201,13 +198,14 @@ function renderTestcaseNode(filepathlist) {
         });
 
         rl.on('close', function () {
+
+
             if (filetype == 'resource') {
                 var update_node = zTree.getNodeByParam("id", parent_node_id);
                 update_node.iconSkin = 'resource';
                 zTree.updateNode(update_node);
             }
 
-            console.log(file_data, value[2]);
 
             // __init__ 文件，setting种没有 Test Template、Default Tags、Test Timeout
             if (value[2] == '__init__') {
@@ -279,6 +277,14 @@ function renderTestcaseNode(filepathlist) {
                 ];
             }
 
+            // 特殊处理，对于文件的最后一行，要把[]处理成[[]]
+            if (file_data[case_name_id_tmp].length==0) {
+                file_data[case_name_id_tmp]=[[]];
+            }
+
+
+
+
 
         });
 
@@ -289,7 +295,7 @@ function renderTestcaseNode(filepathlist) {
 function openDirectory() {
 
     var directory = dialog.showOpenDialog({ properties: ['openDirectory'] });
-    
+
     if (directory) {
 
         $('#workspace_dir').text(directory[0]);
