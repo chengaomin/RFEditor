@@ -278,10 +278,6 @@ function renderTestcaseNode(filepathlist) {
             }
 
 
-
-
-
-
         });
 
     });
@@ -291,17 +287,17 @@ function renderTestcaseNode(filepathlist) {
 function openDirectory() {
 
     var directory = dialog.showOpenDialog({ properties: ['openDirectory'] });
+    
     if (directory) {
+
+        $('#workspace_dir').text(directory[0]);
+
         var dataArr = get_workspace_data(directory[0]);
         zTree.destroy();
         UITree.init();
         zTree.addNodes(null, dataArr[0])
 
         renderTestcaseNode(dataArr[1]);
-
-
-
-
 
     }
 
