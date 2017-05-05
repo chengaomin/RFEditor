@@ -210,13 +210,14 @@ function renderTestcaseNode(filepathlist) {
             // __init__ 文件，setting种没有 Test Template、Default Tags、Test Timeout
             if (value[2] == '__init__') {
 
-                
-                file_data['settings'].splice(8, 1);
-                file_data['settings'].splice(6, 1);
-                file_data['settings'].splice(5, 1);
-
+                if (file_data.hasOwnProperty('settings')) {
+                    file_data['settings'].splice(8, 1);
+                    file_data['settings'].splice(6, 1);
+                    file_data['settings'].splice(5, 1);
+                }
                 var node_id = zTree.getNodeByParam("id", parent_node_id).getParentNode().id
                 rf_data[value[2] + "_" + node_id] = file_data;
+
 
                 // 移除__init__ 文件的节点
                 zTree.removeNode(zTree.getNodeByParam("id", parent_node_id));
