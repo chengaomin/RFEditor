@@ -1,11 +1,20 @@
 
 const { app } = nodeRequire('electron').remote;
-var path = nodeRequire("path");
+const path = nodeRequire("path");
+const exec = nodeRequire('child_process').exec;
 
+var randomtime= 'RFEditor' + (new Date()).valueOf();
 
-var temp_dir=path.join(app.getPath('temp'),'RFEditor'+(new Date()).valueOf());
+var temp_dir = path.join(app.getPath('temp'), randomtime);
 
-var argfile_path=path.join(temp_dir,'argfile.txt');
+var argfile_path = path.join(temp_dir, 'argfile.txt');
+
+var runing_log_path = path.join(temp_dir, 'runing.txt');
+
+jetpack.write(runing_log_path, '222');
+
+watch_running_log_file();
+
 
 console.log(temp_dir);
 
@@ -14,7 +23,7 @@ function runTest() {
 
     var checked_nodes = zTree.getCheckedNodes(true);
 
-    argfile_data = ['--outputdir', temp_dir , '-C', 'off', '-W', '168']
+    argfile_data = ['--outputdir', temp_dir, '-C', 'off', '-W', '168']
 
     $.each(checked_nodes, function (index, node) {
 
@@ -32,6 +41,10 @@ function runTest() {
         }
 
     });
+
+    var runargs = 'pybot.bat --argumentfile ' + argfile_path + ' --listener E:/workspace/ColoRide/app/plugin/rflistener/RFListener.py:' + randomtime + ' C:/Users/cheng/bbbbbb/aaaaaaa';
+    console.log(runargs);
+    exec(runargs);
 
 }
 
@@ -60,3 +73,18 @@ function get_suite_case_name(node) {
     console.log(suite_name.join("."));
 }
 
+
+
+function watch_running_log_file() {
+    fs.watch(runing_log_path, 'utf8',(eventType, filename) => {
+        console.log(`事件类型是: ${eventType}`);
+        if (filename) {
+            console.log(`提供的文件名: ${filename}`);
+        } else {
+            console.log('未提供文件名');
+        }; fs.readFile(runing_log_path, 'utf8', (err, data) => {
+            if (err) throw err;
+            console.log(data);
+        });
+    });
+}
