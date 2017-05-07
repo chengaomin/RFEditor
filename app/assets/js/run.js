@@ -3,7 +3,7 @@ const { app } = nodeRequire('electron').remote;
 const path = nodeRequire("path");
 const exec = nodeRequire('child_process').exec;
 
-var randomtime= 'RFEditor' + (new Date()).valueOf();
+var randomtime = 'RFEditor' + (new Date()).valueOf();
 
 var temp_dir = path.join(app.getPath('temp'), randomtime);
 
@@ -11,7 +11,11 @@ var argfile_path = path.join(temp_dir, 'argfile.txt');
 
 var runing_log_path = path.join(temp_dir, 'runing.txt');
 
-jetpack.write(runing_log_path, '222');
+jetpack.write(runing_log_path, '');
+
+var runing_console_path = path.join(temp_dir, 'runing_console.txt');
+
+jetpack.write(runing_console_path, '');
 
 watch_running_log_file();
 
@@ -42,7 +46,7 @@ function runTest() {
 
     });
 
-    var runargs = 'pybot.bat --argumentfile ' + argfile_path + ' --listener E:/workspace/ColoRide/app/plugin/rflistener/RFListener.py:' + randomtime + ' C:/Users/cheng/bbbbbb/aaaaaaa';
+    var runargs = 'pybot.bat --argumentfile ' + argfile_path + ' --listener E:/workspace/ColoRide/app/plugin/rflistener/RFListener.py:' + randomtime + ' ' + $('#workspace_dir').text()+' > '+runing_console_path;
     console.log(runargs);
     exec(runargs);
 
@@ -76,7 +80,7 @@ function get_suite_case_name(node) {
 
 
 function watch_running_log_file() {
-    fs.watch(runing_log_path, 'utf8',(eventType, filename) => {
+    fs.watch(runing_log_path, 'utf8', (eventType, filename) => {
         console.log(`事件类型是: ${eventType}`);
         if (filename) {
             console.log(`提供的文件名: ${filename}`);
@@ -85,6 +89,36 @@ function watch_running_log_file() {
         }; fs.readFile(runing_log_path, 'utf8', (err, data) => {
             if (err) throw err;
             console.log(data);
+            $('#running_log').html(html_encode(data));
         });
     });
+
+
+    fs.watch(runing_console_path, 'utf8', (eventType, filename) => {
+        console.log(`事件类型是: ${eventType}`);
+        if (filename) {
+            console.log(`提供的文件名: ${filename}`);
+        } else {
+            console.log('未提供文件名');
+        }; fs.readFile(runing_console_path, 'utf8', (err, data) => {
+            if (err) throw err;
+            console.log(data);
+            $('#console_log').html(html_encode(data));
+        });
+    });
+    
+}
+
+
+function html_encode(str) {
+    var s = "";
+    if (str.length == 0) return "";
+    s = str.replace(/&/g, ">");
+    s = s.replace(/</g, "<");
+    s = s.replace(/>/g, ">");
+    s = s.replace(/ /g, "&nbsp;");
+    s = s.replace(/\'/g, "'");
+    s = s.replace(/\"/g, "\"");
+    s = s.replace(/\n/g, "<br>");
+    return s;
 }

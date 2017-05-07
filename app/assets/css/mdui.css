@@ -5050,7 +5050,7 @@ template {
  * =============================================================================
  */
 body {
-  font-family: Roboto, Noto, Helvetica, Arial, sans-serif;
+  font-family: consolas,Roboto, Noto, Helvetica, Arial, sans-serif;
   font-size: 14px;
   color: rgba(0, 0, 0, .87);
   background-color: #fff;
