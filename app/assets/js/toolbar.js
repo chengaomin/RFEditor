@@ -174,7 +174,6 @@ function renderTestcaseNode(filepathlist) {
                                     pre_line = 8;
                                     break;
                                 case '...':
-                                    console.log(pre_line, settings_args);
                                     settings_args.shift();
                                     file_data[case_name_id_tmp][pre_line].push.apply(file_data[case_name_id_tmp][pre_line], settings_args);
                                     break;
@@ -203,6 +202,8 @@ function renderTestcaseNode(filepathlist) {
             if (filetype == 'resource') {
                 var update_node = zTree.getNodeByParam("id", parent_node_id);
                 update_node.iconSkin = 'resource';
+                update_node.chkDisabled =true;
+                // zTree.setChkDisabled(nodes[i], true);
                 zTree.updateNode(update_node);
             }
 
@@ -278,7 +279,7 @@ function renderTestcaseNode(filepathlist) {
             }
 
             // 特殊处理，对于文件的最后一行，要把[]处理成[[]]
-            if (file_data[case_name_id_tmp].length==0) {
+            if (case_name_id_tmp && file_data[case_name_id_tmp].length==0) {
                 file_data[case_name_id_tmp]=[[]];
             }
 
