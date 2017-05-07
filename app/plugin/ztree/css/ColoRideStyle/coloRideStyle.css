@@ -51,7 +51,8 @@ website:	http://code.google.com/p/jquerytree/
 .ztree li span.button.chk.checkbox_false_part_focus {background-position:-263px -39px}
 
 
-.ztree li span.button.chk.checkbox_false_disable {background-position:0 -56px}
+/*.ztree li span.button.chk.checkbox_false_disable {background-position:0 -56px}*/
+.ztree li span.button.chk.checkbox_false_disable {background-position:-263px -39px}
 
 /*.ztree li span.button.chk.checkbox_true_full {background-position:-14px 0}*/
 .ztree li span.button.chk.checkbox_true_full {background-position:-327px -5px}
