@@ -1,6 +1,9 @@
 import os.path
 import tempfile
+import sys
 
+reload(sys)
+sys.setdefaultencoding('utf-8') 
 
 class RFListener:
     ROBOT_LISTENER_API_VERSION = 2
