@@ -2,6 +2,7 @@
 const { app } = nodeRequire('electron').remote;
 const path = nodeRequire("path");
 const exec = nodeRequire('child_process').exec;
+const spawn = nodeRequire('child_process').spawn;
 
 var randomtime = 'RFEditor' + (new Date()).valueOf();
 
@@ -25,6 +26,10 @@ console.log(temp_dir);
 
 function runTest() {
 
+    $('#console_log').html('');
+    $('#running_log').html('');
+
+
     var checked_nodes = zTree.getCheckedNodes(true);
 
     argfile_data = ['--outputdir', temp_dir, '-C', 'off', '-W', '168']
@@ -46,10 +51,32 @@ function runTest() {
 
     });
 
-    var runargs = 'pybot.bat --argumentfile ' + argfile_path + ' --listener E:/workspace/ColoRide/app/plugin/rflistener/RFListener.py:' + randomtime + ' ' + $('#workspace_dir').text()+' > '+runing_console_path;
+    var runargs = 'pybot.bat --argumentfile ' + argfile_path + ' --listener E:/workspace/ColoRide/app/plugin/rflistener/RFListener.py:' + randomtime + ' ' + $('#workspace_dir').text();// + ' > ' + runing_console_path;
     console.log(runargs);
-    exec(runargs);
+    // exec(runargs);
 
+    // exec(runargs, function (err, stdout, stderr) {
+    //     if (err) throw err;
+    //     else console.log(err, stdout, stderr);
+    // });
+
+
+
+    
+    const ls = spawn('pybot.bat',['--argumentfile',argfile_path, '--listener', 'E:/workspace/ColoRide/app/plugin/rflistener/RFListener.py:' + randomtime, $('#workspace_dir').text()]);
+
+    ls.stdout.on('data', (data) => {
+        console.log(`stdout: ${data}`);
+        $('#console_log').append(html_encode(`${data}`));
+    });
+
+    ls.stderr.on('data', (data) => {
+        console.log(`stderr: ${data}`);
+    });
+
+    ls.on('close', (code) => {
+        console.log(`子进程退出码：${code}`);
+    });
 }
 
 var argfile_data = [];
@@ -106,7 +133,7 @@ function watch_running_log_file() {
             $('#console_log').html(html_encode(data));
         });
     });
-    
+
 }
 
 
