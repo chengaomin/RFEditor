@@ -112,7 +112,7 @@
                                         <div id="example"></div>
                                     </div>
                                     <div id="bottom-tab-settings-content" class="mdui-p-a-0" style="overflow: hidden;">
-                                        <div id="settings_table" ></div>
+                                        <div id="settings_table"></div>
 
                                     </div>
                                     <div id="bottom-tab-variables-content" class="mdui-p-a-0 mdui-drawer-scrollbar" style="overflow: hidden;">
@@ -130,7 +130,17 @@
                                 </div>
                                 <div id="top-tab-text-edit-content" class="mdui-p-a-0" style="border: solid 1px red;">shopping content</div>
                                 <div id="top-tab-run-content" class="mdui-p-a-0">
-                                    <div class='frameset' style="border: solid 1px red;" rows="50%,*">
+                                    <div id="running-status-div" style="display:none">
+                                        <div class="mdui-progress" id="running-status-progress">
+                                            <div class="mdui-progress-indeterminate mdui-color-blue-300"></div>
+                                        </div>
+                                        <button class="mdui-btn mdui-btn-block mdui-color-grey-300 mdui-ripple running-status-bar">
+                                         elapsed time:<span id="running-status-bar-time"> 00:00:00 <span>
+                                         pass:<span id="running-status-bar-pass"> 0 <span>
+                                         fail:<span id="running-status-bar-fail"> 0 <span>
+                                    </button>
+                                    </div>
+                                    <div class='frameset' rows="50%,*">
                                         <div id="console_log">
                                             <p> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
                                                 tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.

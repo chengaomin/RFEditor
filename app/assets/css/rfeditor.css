@@ -5,3 +5,10 @@
 .no-drag{
     -webkit-app-region: no-drag;
 }
+
+
+.running-status-bar{
+    height: 20px;
+    font-size: 14px;
+    line-height:20px;
+}

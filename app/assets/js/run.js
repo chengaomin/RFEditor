@@ -22,10 +22,31 @@ watch_running_log_file();
 console.log(temp_dir);
 
 
+
+function reset_running_status(){
+    $("#running-status-div").show();
+    $("#running-status-progress").show();
+    $("#running-status-bar-time").text("00:00:00");
+    $("#running-status-bar-pass").text("0");
+    $("#running-status-bar-fail").text("0");
+}
+
+function hide_running_status_progress(){
+    $("#running-status-progress").hide();
+}
+
+function hide_running_status(){
+    $("#running-status-div").hide();
+}
+
 function runTest() {
 
     var inst = new mdui.Tab('#top-tab');
     inst.show('top-tab-run');
+
+    reset_running_status();
+
+    
 
     $('#console_log').html('');
     $('#running_log').html('');
@@ -68,6 +89,7 @@ function runTest() {
 
     runargs.on('close', (code) => {
         console.log(`子进程退出码：${code}`);
+        hide_running_status_progress();
     });
 }
 
