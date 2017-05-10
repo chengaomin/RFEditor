@@ -15,9 +15,6 @@ var runing_log_path = path.join(temp_dir, 'runing.txt');
 
 jetpack.write(runing_log_path, '');
 
-var runing_console_path = path.join(temp_dir, 'runing_console.txt');
-
-jetpack.write(runing_console_path, '');
 
 watch_running_log_file();
 
@@ -52,31 +49,20 @@ function runTest() {
 
     });
 
-    var runargs = 'pybot.bat --argumentfile ' + argfile_path + ' --listener E:/workspace/ColoRide/app/plugin/rflistener/RFListener.py:' + randomtime + ' ' + $('#workspace_dir').text();// + ' > ' + runing_console_path;
+
+    const runargs = spawn('pybot.bat', ['--argumentfile', argfile_path, '--listener', 'E:/workspace/ColoRide/app/plugin/rflistener/RFListener.py:' + randomtime, $('#workspace_dir').text()]);
     console.log(runargs);
-    // exec(runargs);
-
-    // exec(runargs, function (err, stdout, stderr) {
-    //     if (err) throw err;
-    //     else console.log(err, stdout, stderr);
-    // });
-
-
-
-
-    const ls = spawn('pybot.bat', ['--argumentfile', argfile_path, '--listener', 'E:/workspace/ColoRide/app/plugin/rflistener/RFListener.py:' + randomtime, $('#workspace_dir').text()]);
-
-    ls.stdout.on('data', (data) => {
+    runargs.stdout.on('data', (data) => {
         console.log(iconv.decode(data, 'gbk'));
         $('#console_log').append(html_encode(iconv.decode(data, 'gbk')));
 
     });
 
-    ls.stderr.on('data', (data) => {
+    runargs.stderr.on('data', (data) => {
         console.log(`stderr: ${data}`);
     });
 
-    ls.on('close', (code) => {
+    runargs.on('close', (code) => {
         console.log(`子进程退出码：${code}`);
     });
 }
@@ -106,7 +92,10 @@ function get_suite_case_name(node) {
     console.log(suite_name.join("."));
 }
 
-
+function decodeUnicode(str) {  
+    str = str.replace(/\\/g, "%");  
+    return unescape(str);  
+}  
 
 function watch_running_log_file() {
     fs.watch(runing_log_path, 'utf8', (eventType, filename) => {
@@ -117,22 +106,8 @@ function watch_running_log_file() {
             console.log('未提供文件名');
         }; fs.readFile(runing_log_path, 'utf8', (err, data) => {
             if (err) throw err;
-            console.log(data);
-            $('#running_log').html(html_encode(data));
-        });
-    });
-
-
-    fs.watch(runing_console_path, 'utf8', (eventType, filename) => {
-        console.log(`事件类型是: ${eventType}`);
-        if (filename) {
-            console.log(`提供的文件名: ${filename}`);
-        } else {
-            console.log('未提供文件名');
-        }; fs.readFile(runing_console_path, 'utf8', (err, data) => {
-            if (err) throw err;
-            console.log(data);
-            $('#console_log').html(html_encode(data));
+            console.log(decodeUnicode(data));
+            $('#running_log').html(html_encode(decodeUnicode(data)));
         });
     });
 
