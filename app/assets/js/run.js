@@ -24,13 +24,17 @@ console.log(temp_dir);
 
 function runTest() {
 
+    var inst = new mdui.Tab('#top-tab');
+    inst.show('top-tab-run');
+
     $('#console_log').html('');
     $('#running_log').html('');
 
 
     var checked_nodes = zTree.getCheckedNodes(true);
+    console.log(($('#console_log').width()/8).toString());
 
-    argfile_data = ['--outputdir', temp_dir, '-C', 'off', '-W', '168']
+    argfile_data = ['--outputdir', temp_dir, '-C', 'off', '-W', parseInt($('#console_log').width()/8).toString()]
 
     $.each(checked_nodes, function (index, node) {
 
