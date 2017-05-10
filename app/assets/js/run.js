@@ -3,6 +3,7 @@ const { app } = nodeRequire('electron').remote;
 const path = nodeRequire("path");
 const exec = nodeRequire('child_process').exec;
 const spawn = nodeRequire('child_process').spawn;
+const iconv = nodeRequire('iconv-lite');
 
 var randomtime = 'RFEditor' + (new Date()).valueOf();
 
@@ -62,12 +63,13 @@ function runTest() {
 
 
 
-    
-    const ls = spawn('pybot.bat',['--argumentfile',argfile_path, '--listener', 'E:/workspace/ColoRide/app/plugin/rflistener/RFListener.py:' + randomtime, $('#workspace_dir').text()]);
+
+    const ls = spawn('pybot.bat', ['--argumentfile', argfile_path, '--listener', 'E:/workspace/ColoRide/app/plugin/rflistener/RFListener.py:' + randomtime, $('#workspace_dir').text()]);
 
     ls.stdout.on('data', (data) => {
-        console.log(`stdout: ${data}`);
-        $('#console_log').append(html_encode(`${data}`));
+        console.log(iconv.decode(data, 'gbk'));
+        $('#console_log').append(html_encode(iconv.decode(data, 'gbk')));
+
     });
 
     ls.stderr.on('data', (data) => {
