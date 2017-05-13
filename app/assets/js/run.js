@@ -12,17 +12,23 @@ var temp_dir = path.join(app.getPath('temp'), randomtime);
 
 var argfile_path = path.join(temp_dir, 'argfile.txt');
 
-var runing_log_path = path.join(temp_dir, 'runing.txt');
-
-jetpack.write(runing_log_path, '');
-
-
-watch_running_log_file();
+var pass_count = 0;
+var fail_count = 0;
 
 
 console.log(temp_dir);
 
 
+
+function start_time() {
+    $('#running-status-bar-time').timer({
+        format: '%H:%M:%S'
+    });
+}
+
+function stop_time() {
+    $('#running-status-bar-time').timer('remove');
+}
 
 function reset_running_status() {
     $("#running-status-div").show();
@@ -30,15 +36,24 @@ function reset_running_status() {
     $("#running-status-bar-time").text("00:00:00");
     $("#running-status-bar-pass").text("0");
     $("#running-status-bar-fail").text("0");
-    $('#openreport_btn').attr("disabled",true);
-    $('#openlog_btn').attr("disabled",true);
+    $("#running-status-bar-current-keyword").text("");
+
+    $('#openreport_btn').attr("disabled", true);
+    $('#openlog_btn').attr("disabled", true);
+
+    $("#running-status-bar").attr("class", function (index, oldClass) {
+        return oldClass.replace(/mdui-color-(.*?) /, 'mdui-color-grey-300 ');
+    });
 
 }
 
 function hide_running_status_progress() {
     $("#running-status-progress").hide();
-    $('#openreport_btn').attr("disabled",false);
-    $('#openlog_btn').attr("disabled",false);
+    $('#openreport_btn').attr("disabled", false);
+    $('#openlog_btn').attr("disabled", false);
+    $("#running-status-bar-current-keyword").text("");
+    stop_time();
+
 
 }
 
@@ -47,6 +62,10 @@ function hide_running_status() {
 }
 
 function runTest() {
+
+    pass_count = 0;
+    fail_count = 0;
+
 
     var inst = new mdui.Tab('#top-tab');
     inst.show('top-tab-run');
@@ -60,7 +79,6 @@ function runTest() {
 
 
     var checked_nodes = zTree.getCheckedNodes(true);
-    console.log(($('#console_log').width() / 8).toString());
 
     argfile_data = ['--outputdir', temp_dir, '-C', 'off', '-W', parseInt($('#console_log').width() / 8).toString()]
 
@@ -85,7 +103,6 @@ function runTest() {
     const runargs = spawn('pybot.bat', ['--argumentfile', argfile_path, '--listener', 'E:/workspace/ColoRide/app/plugin/rflistener/RFListener.py:' + randomtime, $('#workspace_dir').text()]);
     console.log(runargs);
     runargs.stdout.on('data', (data) => {
-        console.log(iconv.decode(data, 'gbk'));
         $('#console_log').append(html_encode(iconv.decode(data, 'gbk')));
 
     });
@@ -98,6 +115,11 @@ function runTest() {
         console.log(`子进程退出码：${code}`);
         hide_running_status_progress();
     });
+
+
+
+    // 开始计时
+    start_time();
 }
 
 var argfile_data = [];
@@ -121,31 +143,14 @@ function get_suite_case_name(node) {
     argfile_data.push('--test');
     argfile_data.push(case_name.join("."));
 
-    console.log(case_name.join("."));
-    console.log(suite_name.join("."));
+    // console.log(case_name.join("."));
+    // console.log(suite_name.join("."));
 }
 
 function decodeUnicode(str) {
     str = str.replace(/\\/g, "%");
     return unescape(str);
 }
-
-function watch_running_log_file() {
-    fs.watch(runing_log_path, 'utf8', (eventType, filename) => {
-        console.log(`事件类型是: ${eventType}`);
-        if (filename) {
-            console.log(`提供的文件名: ${filename}`);
-        } else {
-            console.log('未提供文件名');
-        }; fs.readFile(runing_log_path, 'utf8', (err, data) => {
-            if (err) throw err;
-            console.log(decodeUnicode(data));
-            $('#running_log').html(html_encode(decodeUnicode(data)));
-        });
-    });
-
-}
-
 
 function html_encode(str) {
     var s = "";
@@ -172,8 +177,8 @@ function openReport(ele) {
 
 function openLog(ele) {
     if (!$(ele).attr('disabled')) {
-    var file_path = path.join(temp_dir, 'log.html');
-    shell.openExternal(file_path);
+        var file_path = path.join(temp_dir, 'log.html');
+        shell.openExternal(file_path);
     }
 
 }
