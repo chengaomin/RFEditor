@@ -4,7 +4,7 @@ var chatServer = net.createServer(),
 
 chatServer.on('connection', function (client) {
     client.name = client.remoteAddress + ':' + client.remotePort
-    client.write('Hi ' + client.name + '!\n');
+    // client.write('Hi ' + client.name + '!\n');
 
     clientList.push(client)
 
@@ -12,7 +12,6 @@ chatServer.on('connection', function (client) {
         // $("#running_log").append(data.toString());
         $('#running_log').append(html_encode(decodeUnicode(data.toString())));
         console.log(data.toString());
-        client.write('1111111!\n');
     })
 
     client.on('end', function () {

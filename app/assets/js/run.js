@@ -4,6 +4,7 @@ const path = nodeRequire("path");
 const exec = nodeRequire('child_process').exec;
 const spawn = nodeRequire('child_process').spawn;
 const iconv = nodeRequire('iconv-lite');
+const { shell } = nodeRequire('electron');
 
 var randomtime = 'RFEditor' + (new Date()).valueOf();
 
@@ -23,19 +24,25 @@ console.log(temp_dir);
 
 
 
-function reset_running_status(){
+function reset_running_status() {
     $("#running-status-div").show();
     $("#running-status-progress").show();
     $("#running-status-bar-time").text("00:00:00");
     $("#running-status-bar-pass").text("0");
     $("#running-status-bar-fail").text("0");
+    $('#openreport_btn').attr("disabled",true);
+    $('#openlog_btn').attr("disabled",true);
+
 }
 
-function hide_running_status_progress(){
+function hide_running_status_progress() {
     $("#running-status-progress").hide();
+    $('#openreport_btn').attr("disabled",false);
+    $('#openlog_btn').attr("disabled",false);
+
 }
 
-function hide_running_status(){
+function hide_running_status() {
     $("#running-status-div").hide();
 }
 
@@ -46,16 +53,16 @@ function runTest() {
 
     reset_running_status();
 
-    
+
 
     $('#console_log').html('');
     $('#running_log').html('');
 
 
     var checked_nodes = zTree.getCheckedNodes(true);
-    console.log(($('#console_log').width()/8).toString());
+    console.log(($('#console_log').width() / 8).toString());
 
-    argfile_data = ['--outputdir', temp_dir, '-C', 'off', '-W', parseInt($('#console_log').width()/8).toString()]
+    argfile_data = ['--outputdir', temp_dir, '-C', 'off', '-W', parseInt($('#console_log').width() / 8).toString()]
 
     $.each(checked_nodes, function (index, node) {
 
@@ -118,10 +125,10 @@ function get_suite_case_name(node) {
     console.log(suite_name.join("."));
 }
 
-function decodeUnicode(str) {  
-    str = str.replace(/\\/g, "%");  
-    return unescape(str);  
-}  
+function decodeUnicode(str) {
+    str = str.replace(/\\/g, "%");
+    return unescape(str);
+}
 
 function watch_running_log_file() {
     fs.watch(runing_log_path, 'utf8', (eventType, filename) => {
@@ -151,4 +158,22 @@ function html_encode(str) {
     s = s.replace(/\"/g, "\"");
     s = s.replace(/\n/g, "<br>");
     return s;
+}
+
+
+
+function openReport(ele) {
+    if (!$(ele).attr('disabled')) {
+        var file_path = path.join(temp_dir, 'report.html');
+        shell.openExternal(file_path);
+    }
+
+}
+
+function openLog(ele) {
+    if (!$(ele).attr('disabled')) {
+    var file_path = path.join(temp_dir, 'log.html');
+    shell.openExternal(file_path);
+    }
+
 }

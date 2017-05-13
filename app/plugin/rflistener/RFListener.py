@@ -32,4 +32,4 @@ class RFListener:
         pass
         
     def close(self):
-        pass
+        self.server.close()
