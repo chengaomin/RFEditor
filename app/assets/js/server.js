@@ -16,6 +16,8 @@ chatServer.on('connection', function (client) {
 
         if (message_type == 'l') {
             $('#running_log').append(html_encode(decodeUnicode(message_data)));
+            $('#running_log').scrollTop($('#running_log')[0].scrollHeight);
+
         } else if (message_type == 'k') {
             $('#running-status-bar-current-keyword').text(message_data);
         } else if (message_type == 's') {

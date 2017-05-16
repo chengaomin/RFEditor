@@ -105,6 +105,7 @@ function runTest() {
     console.log(runargs);
     runargs.stdout.on('data', (data) => {
         $('#console_log').append(html_encode(iconv.decode(data, 'gbk')));
+        $('#console_log').scrollTop($('#console_log')[0].scrollHeight);
 
     });
 
