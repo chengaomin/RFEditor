@@ -5,6 +5,7 @@ const exec = nodeRequire('child_process').exec;
 const spawn = nodeRequire('child_process').spawn;
 const iconv = nodeRequire('iconv-lite');
 const { shell } = nodeRequire('electron');
+const { BrowserWindow } = nodeRequire('electron').remote;;
 
 var randomtime = 'RFEditor' + (new Date()).valueOf();
 

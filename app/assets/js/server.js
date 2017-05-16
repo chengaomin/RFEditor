@@ -26,11 +26,11 @@ chatServer.on('connection', function (client) {
             }
 
             if (fail_count == 0) {
-                $("#running-status-bar").attr("class",function (index, oldClass) {
+                $("#running-status-bar").attr("class", function (index, oldClass) {
                     return oldClass.replace(/mdui-color-(.*?) /, 'mdui-color-green-300 ');
                 });
             } else {
-                $("#running-status-bar").attr("class",function (index, oldClass) {
+                $("#running-status-bar").attr("class", function (index, oldClass) {
                     return oldClass.replace(/mdui-color-(.*?) /, 'mdui-color-red-300 ');
                 });
             }
