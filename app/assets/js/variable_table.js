@@ -24,7 +24,7 @@ var UIvariable_table = function () {
             minRows: 200,
             minCols: 3,
             rowHeights: 24,
-            colWidths: 200,
+            colWidths: 280,
             minSpareRows: 1,
             colHeaders: ['Variable', 'Value', 'Comment']
         };

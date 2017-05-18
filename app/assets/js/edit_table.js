@@ -11,15 +11,7 @@ var UIedit_table = function () {
 
         function getData() {
             return [
-                ['[Documentation]'],
-                ['[Tags]'],
-                ['[Setup]'],
-
-                ['${names}', 'Create List', 'Tom', 'Peter', 'Linda'],
-                [':FOR', '${name}', 'in', '${names}'],
-                ['', 'Log', '${name}'],
-                ['Run Keyword If', '1==2', 'Log', 'error'],
-                ['...', 'ELSE', 'Log', 'success']
+                [],
             ];
         }
 
@@ -29,8 +21,8 @@ var UIedit_table = function () {
             data: getData(),
             startRows: 5,
             startCols: 5,
-            minRows: 220,
-            minCols: 20,
+            minRows: 32,
+            minCols: 10,
             rowHeaders: true,
             minSpareRows: 1,
             minSpareCols: 1,
