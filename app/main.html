@@ -40,7 +40,7 @@
                 <div class="mdui-toolbar-spacer"></div>
                 <a href="javascript:;" class="mdui-btn mdui-btn-icon no-drag" id="minimize_app"><i class="mdui-icon material-icons">remove</i></a>
                 <a href="javascript:;" class="mdui-btn mdui-btn-icon no-drag" id="maximize_app"><i class="mdui-icon material-icons">crop_free</i></a>
-                <a href="javascript:;" class="mdui-btn mdui-btn-icon no-drag" id="close_app" ><i class="mdui-icon material-icons">close</i></a>
+                <a href="javascript:;" class="mdui-btn mdui-btn-icon no-drag" id="close_app"><i class="mdui-icon material-icons">close</i></a>
             </div>
         </header>
 
@@ -118,6 +118,10 @@
 
                                     </div>
                                     <div id="bottom-tab-variables-content" class="mdui-p-a-0 mdui-drawer-scrollbar" style="overflow: hidden;">
+                                        <button class="mdui-btn mdui-color-blue mdui-ripple" id="add_variable_scalar" mdui-dialog="{target: '#add_variable_scalar_dialog'}">Add Scalar</button>
+                                        <button class="mdui-btn mdui-color-blue mdui-ripple" id="add_variable_list">Add List</button>
+                                        <button class="mdui-btn mdui-color-blue mdui-ripple" id="add_variable_dict">Add Dict</button>
+
                                         <div id="variable_table"></div>
 
                                     </div>
@@ -222,6 +226,28 @@
             </li>
         </ul>
 
+        <!--添加变量-弹出窗口-->
+        <div class="mdui-dialog" id="add_variable_scalar_dialog">
+            <div class="mdui-dialog-content">
+                <h1>添加变量</h1>
+                <div class="mdui-textfield">
+                    <label class="mdui-textfield-label">Name</label>
+                    <input class="mdui-textfield-input" type="text" />
+                </div>
+                <div class="mdui-textfield">
+                    <label class="mdui-textfield-label">Value</label>
+                    <input class="mdui-textfield-input" type="text" />
+                </div>
+                <div class="mdui-textfield">
+                    <label class="mdui-textfield-label">Comment</label>
+                    <input class="mdui-textfield-input" type="text" />
+                </div>
+            </div>
+            <div class="mdui-dialog-actions">
+                <button class="mdui-btn mdui-ripple" mdui-dialog-close>取消</button>
+                <button class="mdui-btn mdui-ripple" mdui-dialog-confirm>添加</button>
+            </div>
+        </div>
 
 
         <!--<div class="mdui-table-fluid">
@@ -330,6 +356,7 @@
 
     <script type="text/javascript" src="assets/js/app.js"></script>
 
+    <script type="text/javascript" src="assets/js/file.js"></script>
 
 </body>
 
